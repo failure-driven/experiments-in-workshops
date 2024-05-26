@@ -1,5 +1,9 @@
 # Experiminets in Workshop
 
+[![Continous Integration
+](https://github.com/failure-driven/experiments-in-workshops/actions/workflows/ci.yml/badge.svg)
+](https://github.com/failure-driven/experiments-in-workshops/actions/workflows/ci.yml)
+
 Ideas on how to run a workshop, intially on testing.
 
 ## Scenario: AI powered guest book
