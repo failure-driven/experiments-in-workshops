@@ -25,3 +25,16 @@ AllCops:
   MaxFilesInCache: 10000
 
 # any rubocop overrides live in here
+
+RSpec/Capybara/FeatureMethods:
+  EnabledMethods:
+    - feature
+    - scenario
+
+RSpec/ExampleLength:
+  Exclude:
+    - spec/features/**/*
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/features/**/*
