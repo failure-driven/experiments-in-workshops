@@ -16,6 +16,30 @@ And submits
 Then the guest book entry is visible
 ```
 
+### Setup
+
+```
+make
+just
+just demo-ai
+
+just clean
+```
+
+### Next Steps
+
+- [ ] basic rails project to add an AI guestbook button to
+    - [ ] maybe using a rails generator template?
+    - [ ] myabe added as a rails engine?
+- [ ] fine tune the use of an AI backend?
+    - [ ] use a key for OpenAI?
+    - [ ] fine tune the **ollama** grammer?
+        - https://github.com/crimson-knight/llamero
+        - also take a look at a grammer PR
+          https://github.com/ollama/ollama/pull/1606
+    - [ ] take a look at the **falcon** example
+        - https://github.com/socketry/falcon-rails-example/commit/965c72052c88c3b213f58c0f0056a1a30201cb0b
+
 ## Random thoughs
 
 - [ ] how to deal with environment setup
