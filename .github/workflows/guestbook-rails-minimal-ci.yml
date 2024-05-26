@@ -1,0 +1,35 @@
+name: Guestbook Rails minimal CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "guestbook-rails-minimal/**/*"
+  pull_request:
+    paths:
+      - "guestbook-rails-minimal/**/*"
+  workflow_call:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Just
+        uses: extractions/setup-just@v2
+
+      - name: setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2
+          bundler-cache: true
+
+      - name: just build it
+        working-directory: guestbook-rails-minimal
+        run: |
+          just --shell bash build
