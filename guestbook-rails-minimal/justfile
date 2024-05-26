@@ -1,0 +1,23 @@
+# need bash on GHActions `just --shell bash`
+set shell := ["zsh", "-uc"]
+
+_default:
+    @just --list --unsorted
+
+_setup:
+    bin/setup
+
+# test using rspec
+test:
+    bin/rspec
+
+# lint using rubocop
+lint:
+    bundle exec rubocop
+
+# lint and autocorrect (-a)
+lint-fix:
+    bundle exec rubocop --autocorrect
+
+# build
+build: _setup test lint
