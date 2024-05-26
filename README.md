@@ -2,6 +2,20 @@
 
 Ideas on how to run a workshop, intially on testing.
 
+## Scenario: AI powered guest book
+
+```gherkin
+Given a simple guest book app
+When a new guest book entry is added
+And the generate AI text option is selected
+Then the user is informed that AI is processing the request
+When the AI request is complete
+Then a number of AI generated guest book entries are presented
+When the user accepts an entry
+And submits
+Then the guest book entry is visible
+```
+
 ## Random thoughs
 
 - [ ] how to deal with environment setup
