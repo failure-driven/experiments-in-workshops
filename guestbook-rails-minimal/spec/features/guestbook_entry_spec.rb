@@ -11,7 +11,6 @@ feature "Guestbook entry gets added and viewed", :js do
     end
 
     Then "the guestbook is empty" do
-      pending "no entries and nothing loaded"
       expect(guestbook.entries).to be_empty
     end
 
