@@ -21,6 +21,7 @@ group :test do
   gem "capybara", "~> 3.40"
   gem "rspec-example_steps", "~> 3.1"
   gem "rspec-rails", "~> 6.1"
+  gem "site_prism", "~> 5.0"
 end
 
 group :development, :test do
