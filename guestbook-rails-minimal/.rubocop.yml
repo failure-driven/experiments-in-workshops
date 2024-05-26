@@ -34,7 +34,14 @@ RSpec/Capybara/FeatureMethods:
     - feature
     - scenario
 
+RSpec/DescribedClass:
+  EnforcedStyle: explicit
+
 RSpec/ExampleLength:
+  CountAsOne:
+    - heredoc
+    - hash
+    - array
   Exclude:
     - spec/features/**/*
 

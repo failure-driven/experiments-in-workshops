@@ -17,11 +17,18 @@ RSpec.describe "/entries" do
   # Entry. As you add validations to Entry, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      title: "the title",
+      text: "the text",
+      name: "the name",
+      date: Time.zone.now
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      text: ""
+    }
   }
 
   describe "GET /index" do
@@ -86,14 +93,16 @@ RSpec.describe "/entries" do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          text: "updated text"
+        }
       }
 
       it "updates the requested entry" do
         entry = Entry.create! valid_attributes
         patch entry_url(entry), params: {entry: new_attributes}
         entry.reload
-        skip("Add assertions for updated state")
+        expect(entry).to have_attributes(text: "updated text")
       end
 
       it "redirects to the entry" do
