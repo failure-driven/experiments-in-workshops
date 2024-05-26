@@ -4,13 +4,20 @@ require "rails_helper"
 
 feature "It works, root rails demo page" do
   scenario "I have rails" do
-    visit test_root_rails_path
+    When "the root test page is visited" do
+      visit test_root_rails_path
+    end
 
-    expect(
-      find("ul li", text: "Rails version").text
-    ).to match(/7\.1\.\d+/)
-    expect(
-      find("ul li", text: "Ruby version").text
-    ).to match(/3\.2\.\d+/)
+    Then "rails version is 7.1" do
+      expect(
+        find("ul li", text: "Rails version").text
+      ).to match(/7\.1\.\d+/)
+    end
+
+    And "ruby version is 3.2" do
+      expect(
+        find("ul li", text: "Ruby version").text
+      ).to match(/3\.2\.\d+/)
+    end
   end
 end

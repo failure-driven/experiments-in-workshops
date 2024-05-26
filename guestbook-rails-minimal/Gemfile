@@ -19,6 +19,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 group :test do
   gem "capybara", "~> 3.40"
+  gem "rspec-example_steps", "~> 3.1"
   gem "rspec-rails", "~> 6.1"
 end
 
