@@ -37,6 +37,17 @@ just demo-ai
 just clean
 ```
 
+### Guestbook rails minimal
+
+[![Guestbook Rails minimal CI
+](https://github.com/failure-driven/experiments-in-workshops/actions/workflows/guestbook-rails-minimal-ci.yml/badge.svg)
+](https://github.com/failure-driven/experiments-in-workshops/actions/workflows/guestbook-rails-minimal-ci.yml)
+
+```sh
+cd guestbook-rails-minimal
+just build
+```
+
 ### Next Steps
 
 - [ ] basic rails project to add an AI guestbook button to
