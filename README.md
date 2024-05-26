@@ -22,7 +22,14 @@ Then the guest book entry is visible
 
 ### Setup
 
+```sh
+cd guestbook-rails-minimal
+bin/setup
+bin/rails server
+open http://localhost:3000
 ```
+
+```sh
 make
 just
 just demo-ai
