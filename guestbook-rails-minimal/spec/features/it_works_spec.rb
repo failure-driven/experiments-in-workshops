@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "It works, root rails demo page" do
+feature "It works, root rails demo page", :js do
   let(:it_works_root) { ItWorksRoot.new }
 
   scenario "I have rails" do
