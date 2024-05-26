@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe "entries/edit", type: :view do
+RSpec.describe "entries/edit" do
   let(:entry) {
     Entry.create!(
       title: "MyString",
@@ -9,15 +9,14 @@ RSpec.describe "entries/edit", type: :view do
     )
   }
 
-  before(:each) do
+  before do
     assign(:entry, entry)
   end
 
-  it "renders the edit entry form" do
+  it "renders the edit entry form" do # rubocop:disable RSpec/ExampleLength
     render
 
     assert_select "form[action=?][method=?]", entry_path(entry), "post" do
-
       assert_select "input[name=?]", "entry[title]"
 
       assert_select "input[name=?]", "entry[text]"

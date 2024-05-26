@@ -19,5 +19,9 @@ lint:
 lint-fix:
     bundle exec rubocop --autocorrect
 
+# lint and autocorrect-all
+lint-fix-all:
+    bundle exec rubocop --autocorrect-all
+
 # build
 build: _setup test lint

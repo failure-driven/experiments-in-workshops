@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe "entries/show", type: :view do
-  before(:each) do
+RSpec.describe "entries/show" do
+  before do
     assign(:entry, Entry.create!(
       title: "Title",
       text: "Text",
@@ -9,7 +9,7 @@ RSpec.describe "entries/show", type: :view do
     ))
   end
 
-  it "renders attributes in <p>" do
+  it "renders attributes in <p>", :aggregate_failures do
     render
     expect(rendered).to match(/Title/)
     expect(rendered).to match(/Text/)

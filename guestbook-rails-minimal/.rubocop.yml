@@ -26,6 +26,9 @@ AllCops:
 
 # any rubocop overrides live in here
 
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 RSpec/Capybara/FeatureMethods:
   EnabledMethods:
     - feature
