@@ -180,6 +180,16 @@ cat ~/.gitmessage
 git mob --list
 # or
 git cat ~/.git-coauthors
+
+# show your mob
+git mob
+Jenny <jenny@example.com>
+John  <john@example.com>
+
+# go solo
+git solo
+# ie make the ~/.gitmessage have no co-authors
+cat ~/.gitmessage
 ```
 
 **watch specs**
