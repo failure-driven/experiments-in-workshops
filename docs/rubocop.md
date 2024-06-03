@@ -1,0 +1,75 @@
+# Rubocop - for linting
+
+below is a typical good setup based on standard
+
+```sh
+bundle add standard rubocop-rspec rubocop-performance
+
+cat << EOF > .rubocop.yml
+# https://evilmartians.com/chronicles/rubocoping-with-legacy-bring-your-ruby-code-up-to-standard
+require:
+  - standard
+  - rubocop-performance
+  - rubocop-rspec
+
+# Use the defaults from https://github.com/testdouble/standard
+inherit_gem:
+  standard: config/ruby-3.2.yml
+
+AllCops:
+  TargetRubyVersion: 3.3
+  DefaultFormatter: progress
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  NewCops: enable
+  UseCache: true
+  CacheRootDirectory: .
+  MaxFilesInCache: 10000
+  Exclude:
+    - tmp/**/*
+    - vendor/**/*
+
+# any rubocop overrides live in here
+
+RSpec/Capybara/FeatureMethods:
+  EnabledMethods:
+    - feature
+    - scenario
+
+RSpec/DescribedClass:
+  EnforcedStyle: explicit
+
+RSpec/ExampleLength:
+  Max: 7
+  CountAsOne:
+    - array
+    - hash
+    - heredoc
+    - method_call
+  Exclude:
+    - spec/features/**/*
+
+RSpec/InstanceVariable:
+  Exclude:
+    - spec/features/**/*
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/features/**/*
+
+Style/BlockComments:
+  Exclude:
+    - spec/spec_helper.rb
+EOF
+```
+
+to use the command
+
+```sh
+
+# run rubocop
+bundle exec rubocop
+
+# autocorrect -a OR -A (potentially unsafe)
+bundle exec rubocop -A
+```
