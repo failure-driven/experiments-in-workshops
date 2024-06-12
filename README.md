@@ -167,6 +167,69 @@ flowchart LR
 - [justfile](./docs/justfile.md)
 - [LOL commits](./docs/lol_commits.md)
 
+**Use it in rails**
+
+```sh
+rails new my-new-rails-project \
+    --skip-git \
+    --minimal \
+    --database=postgresql \
+    --template rails_setup/rails_with_testing_template.rb
+
+cd my-new-rails-project
+
+# generate a root controller
+rails generate controller Welcome index \
+    --no-helper \
+    --test-framework=rspec
+
+sed -i .old '/# root/s/# root.*$/root "welcome#index"/' config/routes.rb
+rm config/routes.rb.old
+
+# switch a dojo thing into a gem
+cat << EOF > my_dojo_thing.gemspec
+Gem::Specification.new do |s|
+  s.name        = "my_dojo_thing"
+  s.version     = "0.0.1"
+  s.summary     = "Substring context"
+  s.authors     = ["mob code session"]
+  s.files       = ["lib/my_dojo_thing.rb"]
+end
+EOF
+
+# and build it
+gem build my_dojo_thing.gemspec
+
+# add it as a dependency in Gemfile
+bundle add my_dojo_thing --path "../../dojo/my_dojo_thing"
+# alternately if you have a date or other cruft
+bundle add my_dojo_thing --path "../../dojo/YYYY-MM-DD-my_dojo_thing"
+
+# and use it in the controller
+  def index
+    @input = params[:input]
+    my_dojo_thing = MyDojoThing.new
+    @output = my_dojo_thing.action(@input)
+  end
+
+# and view
+  <%= form_with url: root_path, method: :get do |form| %>
+    <div>
+      <%= form.label :input %>
+      <%= form.text_area :input, value: @input %>
+    </div>
+    <div>
+      <%= form.submit :submit %>
+    </div>
+  <% end %>
+
+  <% if @output %>
+    <textarea>
+      <%= @output %>
+    </textarea>
+  <% end %>
+```
+
 ### Next Steps
 
 - [ ] basic rails project to add an AI guestbook button to
