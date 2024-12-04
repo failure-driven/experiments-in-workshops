@@ -269,3 +269,70 @@ bundle add my_dojo_thing --path "../../dojo/YYYY-MM-DD-my_dojo_thing"
     - [ ] touch on microservices and contract testing
     - [ ] other kinds of testing - property based, random
     - [ ] tracking business level success throught statsd/OpenTelemetry?
+- [ ] to use ASDF in github codespaces, and potentially other custom things, try
+    - https://github.com/iloveitaly/asdf-devcontainer
+    - https://mikebian.co/my-experience-with-github-codespaces/
+- run existing `guestbook-rails-minimal` in github codespaces
+  ```sh
+  # no asdf see above ^^
+  rvm install "ruby-3.2.2"
+  bundle
+  bin/rspec # fails no browser
+  sudo apt-get update && sudo apt-get install firefox
+  # but we have chrome setup
+  # following https://askubuntu.com/questions/510056/how-to-install-google-chrome
+
+  # fails
+  sudo apt-get update && sudo apt-get install google-chrome-stable
+
+  wget https://dl-ssl.google.com/linux/linux_signing_key.pub -O /tmp/google.pub
+  gpg --no-default-keyring --keyring /etc/apt/keyrings/google-chrome.gpg --import /tmp/google.pub
+  echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+  sudo apt-get update 
+  # should work here? maybe
+  sudo apt-get install google-chrome-stable
+
+  # I did this as well
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+  echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+  sudo apt-get update 
+  sudo apt-get install google-chrome-stable
+
+  # still crashses
+  bin/rspec
+
+  # but bin/rails server runs
+  bin/rails s
+  # prompt to make public or open via new window
+
+  # fixed by using --headless
+  cat spec/support/capybara.rb
+  ...
+  if ENV.fetch("CODESPACES", nil) == "true"
+    options.add_argument("--headless")
+
+  # errors are saved as screen shots and can be viewed through VS Code
+  code tmp/capybara/screenshot*.png
+  ```
+
+- [ ] other options for browser testing
+    - [x] using TestCafe - running headless - claims you can ONLY run headless
+      [![
+          Test Automation in Browser | TestCafe on GitHub Codespaces - Dmitry Yarygin
+      ](
+          http://img.youtube.com/vi/117-9BoVoH0/0.jpg
+      )](https://youtu.be/117-9BoVoH0)
+    - [ ] [How to Run Playwright Tests in GitHub Codespaces - Nikolay
+      Advolodkin (Aug 17, 2023)
+      ](https://nikolay-dev.medium.com/how-to-run-playwright-tests-in-github-codespaces-5ac5dcd1babd)
+    - [ ] [How do you use Codespaces with tools like Playwright/Cypress? #47700
+      ](https://github.com/orgs/community/discussions/47700)
+    - [x] feature request [Allow running cypress in codespaces #27217
+      ](https://github.com/cypress-io/cypress/issues/27217)
+    - [ ] https://github.com/AriPerkkio/cypress-codespaces-example
+    - [ ] **HIGH HOPE**
+      https://devopstar.com/2022/01/03/cypress-testing-in-devcontainers-and-github-codespaces/
+    - [ ] **HIGH HOPE** with support for codespaces
+      https://github.com/webdriverio/webdriverio
+    - [ ] general info about development in codesapces
+      https://docs.github.com/en/codespaces/developing-in-a-codespace/developing-in-a-codespace
