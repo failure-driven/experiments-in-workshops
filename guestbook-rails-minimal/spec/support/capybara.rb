@@ -6,7 +6,7 @@ Capybara.javascript_driver = :selenium_chrome
 
 Capybara.register_driver :selenium_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
-  if ENV.fetch("GITHUB_ACTIONS", nil) == "true"
+  if ENV.fetch("GITHUB_ACTIONS", nil) == "true" || ENV.fetch("CODESPACES", nil) == "true"
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
   end
