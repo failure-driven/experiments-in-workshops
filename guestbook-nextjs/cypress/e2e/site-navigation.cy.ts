@@ -8,6 +8,6 @@ describe('navigation of guest book site', () => {
     cy.visit('http://localhost:3000')
 
     cy.log("Then I should see the title")
-    cy.get('div').should('have.text', 'guest book')
+    cy.get('h1').should('have.text', 'guest book')
   })
 })
