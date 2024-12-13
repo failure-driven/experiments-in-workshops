@@ -336,3 +336,32 @@ bundle add my_dojo_thing --path "../../dojo/YYYY-MM-DD-my_dojo_thing"
       https://github.com/webdriverio/webdriverio
     - [ ] general info about development in codesapces
       https://docs.github.com/en/codespaces/developing-in-a-codespace/developing-in-a-codespace
+
+## Progress NextJS
+
+- **Database**
+    - NextJS tutorial uses vercel and that only supports Postgres and does not
+      seem to have migrations
+        - https://nextjs.org/learn/dashboard-app/fetching-data
+        - https://vercel.com/docs/storage/vercel-postgres/sdk#sql
+        - they recommend to create a seeds endpoint to create the tables
+          https://github.com/vercel/next-learn/blob/main/dashboard/starter-example/app/seed/route.ts
+    - sounds like Prisma supports fetching and DB migrations
+        - https://medium.com/@bryantbrock/data-migrations-with-prisma-94909cb0c0c0
+        - https://www.prisma.io/docs/getting-started/quickstart-sqlite
+        - there are also
+            - https://github.com/prisma/prisma-examples/tree/latest
+            - and the core ORM https://github.com/prisma/prisma
+    - attempted
+        ```sh
+        npm install --save-dev prisma
+        npx prisma
+        npx prisma init
+        npx prisma init --datasource-provider sqlite
+        vi prisma/schema.prisma
+        npx prisma migrate dev --name init
+        ```
+        - but got stuck not being able to call it from a React component.
+    - [ ] next time continue with the above and some server side scripts. later
+      transition to having the scripts run in NextJS server components?
+
