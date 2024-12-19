@@ -9,6 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "prettier": "prettier --check '**/*.{js,ts,html}'",
+    "prettier:fix": "prettier --write '**/*.{js,ts,html}'",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
   },
@@ -27,6 +29,7 @@
     "cypress": "^13.16.1",
     "eslint": "9.16.0",
     "eslint-config-next": "15.0.3",
+    "prettier": "^3.4.2",
     "prisma": "^6.1.0",
     "vitest": "^2.1.8"
   }
