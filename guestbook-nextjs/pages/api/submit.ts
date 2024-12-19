@@ -13,7 +13,7 @@ export default async function handler(
     },
   });
 
-  const queue = new Queue("Comment");
+  const queue = new Queue("comment");
   const queueResponse = await queue.add("cars", {
     id: result.id,
     comment: result.comment,

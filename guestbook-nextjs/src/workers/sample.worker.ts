@@ -1,9 +1,11 @@
 import { Worker, Queue } from "bullmq";
 import Redis from "ioredis";
 
-const connection = new Redis(process.env.REDIS_URL!);
+const connection = new Redis(process.env.REDIS_URL!, {
+  maxRetriesPerRequest: null,
+});
 
-export const sampleQueue = new Queue("sampleQueue", {
+export const sampleQueue = new Queue("comment", {
   connection,
   defaultJobOptions: {
     attempts: 2,
@@ -15,7 +17,7 @@ export const sampleQueue = new Queue("sampleQueue", {
 });
 
 const worker = new Worker(
-  "sampleQueue", // this is the queue name, the first string parameter we provided for Queue()
+  "comment", // this is the queue name, the first string parameter we provided for Queue()
   async (job) => {
     const data = job?.data;
     console.log(data);
