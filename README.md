@@ -362,6 +362,13 @@ bundle add my_dojo_thing --path "../../dojo/YYYY-MM-DD-my_dojo_thing"
         npx prisma migrate dev --name init
         ```
         - but got stuck not being able to call it from a React component.
-    - [ ] next time continue with the above and some server side scripts. later
+    - [x] next time continue with the above and some server side scripts. later
       transition to having the scripts run in NextJS server components?
+    - we have FROM -> DB -> display
+    - [ ] next time get BullMQ job to perform in background
+    - [ ] add bootstrap for styling
+    - [ ] E2E test for FORM -> DB -> display
+    - [ ] Component tests?
+    - [ ] Unit tests?
+    - [ ] add the AI adaptor
 
