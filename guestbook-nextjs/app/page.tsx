@@ -1,5 +1,6 @@
 import "../public/styles/main.css";
 import { PrismaClient } from '@prisma/client'
+import Link from "next/link";
 
 export default async function Page() {
   const prisma = new PrismaClient()
@@ -8,7 +9,8 @@ export default async function Page() {
   return (
     <div className="container">
       <h1>guest book</h1>
-      <div className="container">
+        <Link href="/comments">new comment</Link>
+      <div>
         <ul>
           {users.map(user => (
             <li key={user.id}>{user.email}, {user.name}</li>
