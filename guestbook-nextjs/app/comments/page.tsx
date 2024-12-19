@@ -7,12 +7,13 @@ export default function Page() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [comment, setComment] = useState("");
   const router = useRouter();
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
-      const body = { email, name, lastName };
+      const body = { email, name, lastName, comment };
       await fetch(`/api/submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -46,6 +47,12 @@ export default function Page() {
         type="text"
         value={lastName}
       />
+      <textarea
+        onChange={(e) => setComment(e.target.value)}
+        placeholder="comment"
+        value={comment}
+      />
+
       <button type="submit">Submit</button>
     </form>
   );

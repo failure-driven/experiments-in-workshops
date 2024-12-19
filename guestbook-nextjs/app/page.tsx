@@ -13,7 +13,7 @@ export default async function Page() {
       <div>
         <ul>
           {users.map(user => (
-            <li key={user.id}>{user.email}, {user.name}</li>
+            <li key={user.id}>{user.email}, {user.name}, {user.comment}</li>
           ))}
         </ul>
       </div>
