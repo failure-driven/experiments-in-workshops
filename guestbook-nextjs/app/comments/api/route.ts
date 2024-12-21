@@ -1,15 +1,14 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextRequest } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { Queue } from "bullmq";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+export async function POST(req: NextRequest) {
+  const data = await req.json();
   const prisma = new PrismaClient();
+  console.log(data);
   const result = await prisma.user.create({
     data: {
-      ...req.body,
+      ...data,
     },
   });
 
@@ -19,5 +18,5 @@ export default async function handler(
     comment: result.comment,
   });
   console.log(queueResponse);
-  return res.status(201).json(result);
+  return Response.json({ result });
 }

@@ -14,7 +14,7 @@ export default function Page() {
     event.preventDefault();
     try {
       const body = { email, name, lastName, comment };
-      await fetch(`/api/submit`, {
+      await fetch(`/comments/api`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
