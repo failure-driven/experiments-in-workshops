@@ -8,7 +8,14 @@ export default async function Page() {
 
   return (
     <div>
-      <Link href="/comments">new comment</Link>
+      <ul>
+        <li>
+          <Link href="/comments">new comment API</Link>
+        </li>
+        <li>
+          <Link href="/comments/new">new comment FORM data</Link>
+        </li>
+      </ul>
       <div>
         <ul>
           {users.map((user) => (
