@@ -27,31 +27,50 @@ export default function Page() {
 
   return (
     <form onSubmit={onSubmit}>
-      <input type="text" name="name" />
-      <input
-        autoFocus
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="email"
-        type="email"
-        value={email}
-      />
-      <input
-        onChange={(e) => setName(e.target.value)}
-        placeholder="name"
-        type="text"
-        value={name}
-      />
-      <input
-        onChange={(e) => setLastName(e.target.value)}
-        placeholder="last name"
-        type="text"
-        value={lastName}
-      />
-      <textarea
-        onChange={(e) => setComment(e.target.value)}
-        placeholder="comment"
-        value={comment}
-      />
+      <div>
+        <label>Email</label>
+        <div>
+          <input
+            autoFocus
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="email"
+            type="email"
+            value={email}
+          />
+        </div>
+      </div>
+      <div>
+        <label>Name</label>
+        <div>
+          <input
+            onChange={(e) => setName(e.target.value)}
+            placeholder="name"
+            type="text"
+            value={name}
+          />
+        </div>
+      </div>
+      <div>
+        <label>Last Name</label>
+        <div>
+          <input
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="last name"
+            type="text"
+            value={lastName}
+          />
+        </div>
+      </div>
+      <div>
+        <label>Comment</label>
+        <div>
+          <textarea
+            onChange={(e) => setComment(e.target.value)}
+            placeholder="comment"
+            value={comment}
+          />
+        </div>
+      </div>
 
       <button type="submit">Submit</button>
     </form>
