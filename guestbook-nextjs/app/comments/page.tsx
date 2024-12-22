@@ -35,6 +35,7 @@ export default function Page() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="email"
             type="email"
+            name="email"
             value={email}
           />
         </div>
@@ -46,6 +47,7 @@ export default function Page() {
             onChange={(e) => setName(e.target.value)}
             placeholder="name"
             type="text"
+            name="name"
             value={name}
           />
         </div>
@@ -57,6 +59,7 @@ export default function Page() {
             onChange={(e) => setLastName(e.target.value)}
             placeholder="last name"
             type="text"
+            name="last-name"
             value={lastName}
           />
         </div>
@@ -67,6 +70,7 @@ export default function Page() {
           <textarea
             onChange={(e) => setComment(e.target.value)}
             placeholder="comment"
+            name="comment"
             value={comment}
           />
         </div>

@@ -10,14 +10,14 @@ export default async function Page() {
     <div>
       <ul>
         <li>
-          <Link href="/comments">new comment API</Link>
+          <Link href="/comments" data-testid="new-comment">new comment API</Link>
         </li>
         <li>
           <Link href="/comments/new">new comment FORM data</Link>
         </li>
       </ul>
       <div>
-        <ul>
+        <ul data-testid="comment-list">
           {users.map((user) => (
             <li key={user.id}>
               {user.email}, {user.name}, {user.comment}

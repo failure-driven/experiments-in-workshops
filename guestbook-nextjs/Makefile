@@ -40,6 +40,10 @@ test-e2e:
 	#pkill node_modules/.bin/next
 	#ps aux | grep './bin/next dev' | awk '{print $$2}' | xargs kill
 
+.PHONY: cypress-open
+cypress-open:
+	npm run cypress:open -- --browser chrome --e2e
+
 .PHONY: lint
 lint:
 	npm run lint

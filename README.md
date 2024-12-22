@@ -123,7 +123,7 @@ just build
    flowchart LR
        Red["❌ Red"] --> Green["✅ Green"]
        Green --> Refactor["♻ Refactor"]
-       Refactor --> Red 
+       Refactor --> Red
    ```
 
     1. Break the problem into first smallest chunk
@@ -288,14 +288,14 @@ bundle add my_dojo_thing --path "../../dojo/YYYY-MM-DD-my_dojo_thing"
   wget https://dl-ssl.google.com/linux/linux_signing_key.pub -O /tmp/google.pub
   gpg --no-default-keyring --keyring /etc/apt/keyrings/google-chrome.gpg --import /tmp/google.pub
   echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
-  sudo apt-get update 
+  sudo apt-get update
   # should work here? maybe
   sudo apt-get install google-chrome-stable
 
   # I did this as well
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
   echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
-  sudo apt-get update 
+  sudo apt-get update
   sudo apt-get install google-chrome-stable
 
   # still crashses
@@ -371,4 +371,8 @@ bundle add my_dojo_thing --path "../../dojo/YYYY-MM-DD-my_dojo_thing"
     - [ ] Component tests?
     - [ ] Unit tests?
     - [ ] add the AI adaptor
+    - [ ] auto run, start server and run tests
+    - [ ] seed the db
+    - [ ] reset the db in test and run against a test version of DB
+    - [ ] is primsa ORM ok? or should we go for something more SQL
 
