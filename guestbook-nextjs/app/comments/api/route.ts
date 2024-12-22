@@ -2,6 +2,13 @@ import type { NextRequest } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { Queue } from "bullmq";
 
+type userData = {
+  email: string
+  name: string
+  lastName: string
+  comment: string
+};
+
 export async function POST(req: NextRequest) {
   const data = {};
   // NOTE: this is not case insensitive? is there a better way to handle
@@ -19,7 +26,7 @@ export async function POST(req: NextRequest) {
   const prisma = new PrismaClient();
   console.log(data);
   const result = await prisma.user.create({
-    data: {
+    data: <userData>{
       ...data,
     },
   });
