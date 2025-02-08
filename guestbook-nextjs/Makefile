@@ -49,6 +49,11 @@ lint:
 	npm run lint
 	npm run prettier
 
+.PHONY: lint-fix
+lint-fix:
+	npm run lint -- --fix
+	npm run prettier:fix
+
 .PHONY: test
 test: test-unit test-e2e
 

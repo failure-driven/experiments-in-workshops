@@ -3,10 +3,10 @@ import { PrismaClient } from "@prisma/client";
 import { Queue } from "bullmq";
 
 type userData = {
-  email: string
-  name: string
-  lastName: string
-  comment: string
+  email: string;
+  name: string;
+  lastName: string;
+  comment: string;
 };
 
 export async function POST(req: NextRequest) {

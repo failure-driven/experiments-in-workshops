@@ -34,7 +34,7 @@ async function seedUsers() {
   // https://www.prisma.io/docs/orm/prisma-client/queries/crud
   // but maybe moving to something more SQL would be better
   prisma.user.deleteMany({});
-  const deletedUsers = await prisma.user.deleteMany({})
+  const deletedUsers = await prisma.user.deleteMany({});
 
   const insertedUsers = await Promise.all(
     users.map(async (user) => {
@@ -43,7 +43,7 @@ async function seedUsers() {
           ...user,
         },
       });
-    })
+    }),
   );
 
   return [deletedUsers, insertedUsers];
