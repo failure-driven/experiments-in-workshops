@@ -18,6 +18,10 @@ endef
 npm-install:
 	npm install
 
+.PHONY: install
+install: npm-install
+	brew bundle
+
 .PHONY: prisma-migrate
 prisma-migrate:
 	npx prisma migrate dev
@@ -53,6 +57,7 @@ lint:
 lint-fix:
 	npm run lint -- --fix
 	npm run prettier:fix
+	npx prisma format
 
 .PHONY: test
 test: test-unit test-e2e
@@ -68,6 +73,14 @@ demo-worker:
 .PHONY: demo-app
 demo-app:
 	npm run dev
+
+.PHONY: ollama-up
+ollama-up:
+	ollama serve
+
+.PHONY: ollama-mistral-up
+ollama-mistral-up:
+	ollama run mistral
 
 ##
 # TMUX to rule the world 🌏
@@ -116,6 +129,12 @@ usage:
 	@echo
 	@echo "${YELLOW}make demo-app${RESET}            run rubocop with TODOs"
 	@echo "${YELLOW}make demo-worker${RESET}         run rubocop with TODOs"
+	@echo
+	@echo "AI"
+	@echo
+	@echo "${YELLOW}make install${RESET}             install ollama (via brew)"
+	@echo "${YELLOW}make ollama-up${RESET}           run ollama"
+	@echo "${YELLOW}make ollama-mistral-up${RESET}   run mistral on ollama"
 	@echo
 	@echo "Demo"
 	@echo

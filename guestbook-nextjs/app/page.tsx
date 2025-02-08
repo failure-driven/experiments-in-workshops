@@ -20,7 +20,13 @@ export default async function Page() {
         <ul data-testid="comment-list">
           {users.map((user) => (
             <li key={user.id}>
-              {user.email}, {user.name}, {user.comment}
+              <ul>
+                <li>{user.email}</li>
+                <li>{user.name}</li>
+                <li>{user.comment}</li>
+                <li>{user.generatedComment}</li>
+                <li>{user.useGeneratedComment ? "TRUE" : "FALSE"}</li>
+              </ul>
             </li>
           ))}
         </ul>

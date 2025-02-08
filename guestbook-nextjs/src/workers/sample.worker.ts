@@ -1,3 +1,4 @@
+import { PrismaClient } from "@prisma/client";
 import { Worker, Queue } from "bullmq";
 import Redis from "ioredis";
 
@@ -21,6 +22,22 @@ const worker = new Worker(
   async (job) => {
     const data = job?.data;
     console.log(data);
+    const prisma = new PrismaClient();
+    const comment = await prisma.user.findUnique({
+      where: {
+        id: data.id,
+      },
+    });
+    console.log(comment);
+    const updateUser = await prisma.user.update({
+      where: {
+        id: data.id,
+      },
+      data: {
+        generatedComment: `GENERATED: ${comment?.comment}`,
+      },
+    });
+    console.log(updateUser);
     console.log("Task executed successfully");
   },
   {
