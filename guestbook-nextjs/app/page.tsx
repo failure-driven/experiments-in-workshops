@@ -21,7 +21,7 @@ export default async function Page() {
           {users.map((user) => (
             <li key={user.id}>
               <ul>
-                <li>{user.email}</li>
+                <li data-testid="comment-email">{user.email}</li>
                 <li>{user.name}</li>
                 <li>{user.comment}</li>
                 <li>{user.generatedComment}</li>

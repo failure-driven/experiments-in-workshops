@@ -36,13 +36,27 @@ test-unit:
 .PHONY: test-e2e
 test-e2e:
 	# issue if it is running or takes too long to start or PORT is taken
+	# TODO: force PORT to be 1 port and only that port
+	# TODO: how to run in test environment with a different DB?
 	npm run dev &
 	NEXTJS_DEV_PID=$!
 	echo ${NEXTJS_DEV_PID}
-	npm run cypress:run
+	# npm run cypress:run
 	#kill ${NEXTJS_DEV_PID}
 	#pkill node_modules/.bin/next
-	#ps aux | grep './bin/next dev' | awk '{print $$2}' | xargs kill
+	# TODO: wait for last thing to finish?
+	# sleep 10
+	# TODO: wait for server to be up
+	sleep 1
+	curl http://localhost:3000/seed && \
+		npm run cypress:run && \
+		lsof -t -i:3000 | \
+		xargs -I {} ps aux {} | \
+		ag next-server | \
+		awk '{print $$2}' | \
+		xargs kill -9
+	# TODO: attempt to kill all other started test servers on different ports
+	# ps aux | ag next-server | awk '{print $2}' | xargs kill -9
 
 .PHONY: cypress-open
 cypress-open:

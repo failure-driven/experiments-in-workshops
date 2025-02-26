@@ -31,15 +31,25 @@ describe("navigation of guest book site", () => {
     // TODO: view a flash message
 
     cy.log("Then the message is dispalyed on the guestbook");
-    cy.get("ul[data-testid=comment-list] > li")
+    cy.get("[data-testid=comment-list] [data-testid=comment-email]")
       .then(($element) =>
         Array.from($element.map((_index, el) => el.textContent)),
       )
       .then((result) =>
-        expect(result[result.length - 1]).to.equal(
-          "me@example.com, Me, Me with a capital M",
-        ),
+        expect(result[result.length - 1]).to.equal("me@example.com"),
       );
+
+    cy.log("When I choose to create a new comment");
+    cy.get("a[data-testid=new-comment]").click();
+
+    // TODO: test for form being invalid
+
+    cy.log("And I enter a valid comment and my details");
+    cy.get("input[name=email]").type("me@example.com");
+    cy.get("input[name=name]").type("Me");
+    cy.get("input[name=last-name]").type("Me with a capital M");
+    cy.get("textarea[name=comment]").type("Me with a capital M");
+    cy.get("button[type=submit]").click();
 
     // TODO: edit the message TODO: spinner TODO: make background call to get an
     // AI message, probably in aiComment field with a flag to use the field or
