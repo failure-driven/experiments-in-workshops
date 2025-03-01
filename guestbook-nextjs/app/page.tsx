@@ -15,6 +15,9 @@ export default async function Page() {
         <li>
           <Link href="/comments/new">new comment FORM data</Link>
         </li>
+        <li>
+          <Link href="/commentsIter01">new comments iter 01</Link>
+        </li>
       </ul>
       <div>
         <ul data-testid="comment-list">

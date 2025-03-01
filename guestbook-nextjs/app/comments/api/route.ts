@@ -1,6 +1,6 @@
-import type { NextRequest } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { Queue } from "bullmq";
+import { NextRequest, NextResponse } from "next/server";
 
 type userData = {
   email: string;
@@ -9,10 +9,13 @@ type userData = {
   comment: string;
 };
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest, res: NextResponse) {
   const data = {};
   // NOTE: this is not case insensitive? is there a better way to handle
-  if (req.headers.get("content-type") === "application/json") {
+  if (
+    req.method === "POST" &&
+    req.headers["content-type"] === "application/json"
+  ) {
     Object.assign(data, await req.json());
   } else {
     // 'content-type': 'multipart/form-data;
@@ -25,17 +28,23 @@ export async function POST(req: NextRequest) {
   }
   const prisma = new PrismaClient();
   console.log(data);
-  const result = await prisma.user.create({
-    data: <userData>{
-      ...data,
-    },
-  });
-
-  const queue = new Queue("comment");
-  const queueResponse = await queue.add("cars", {
-    id: result.id,
-    comment: result.comment,
-  });
-  console.log(queueResponse);
-  return Response.json({ result });
+  try {
+    const result = await prisma.user.create({
+      data: <userData>{
+        ...data,
+      },
+    });
+    const queue = new Queue("comment");
+    const queueResponse = await queue.add("cars", {
+      id: result.id,
+      comment: result.comment,
+    });
+    console.log(queueResponse);
+    return Response.json({ result });
+  } catch (e) {
+    // res.status = 500;
+    // return res.json({ error: 'failed to load data' + e })
+    // return Response.error(); // { error: `error: ${e.message}` }, { status: 422 });
+    return Response.json({ error: `error: ${e.message}` }, { status: 422 });
+  }
 }

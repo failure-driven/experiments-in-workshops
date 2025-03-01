@@ -14,11 +14,16 @@ export default function Page() {
     event.preventDefault();
     try {
       const body = { email, name, lastName, comment };
-      await fetch(`/comments/api`, {
+      const response = await fetch(`/comments/api`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit the data. Please try again.')
+      }
+
       router.push("/");
     } catch (error) {
       console.error(error);
