@@ -14,11 +14,35 @@ define ANNOUNCE
 echo "$(2)$(1)${RESET}"
 endef
 
-.PHONY: setup
-setup:
+.PHONY: setup-ruby
+setup-ruby:
+	# TODO: check not installed
 	rvm install "ruby-3.2.2"
+
+.PHONY: setup-chrome
+setup-chrome:
+	# TODO: check not installed
+	wget https://dl-ssl.google.com/linux/linux_signing_key.pub -O /tmp/google.pub
+	gpg --no-default-keyring --keyring /etc/apt/keyrings/google-chrome.gpg --import /tmp/google.pub
+	echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main' | \
+		sudo tee /etc/apt/sources.list.d/google-chrome.list
+	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+	echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | \
+		sudo tee /etc/apt/sources.list.d/google-chrome.list
+	sudo apt-get update
+	sudo apt-get install google-chrome-stable
+
+.PHONY: setup
+setup: setup-ruby setup-chrome
 	bin/setup
 
+.PHONY: test
+test:
+	bin/rspec
+
+.PHONY: run
+run:
+	bin/rails server
 
 .PHONY: usage
 usage:
@@ -31,5 +55,7 @@ usage:
 	@echo
 	@echo "Development"
 	@echo
-	@echo "${YELLOW}make setup${RESET}               npm install and setup DB"
+	@echo "${YELLOW}make setup${RESET}               setup dependancies"
+	@echo "${YELLOW}make test${RESET}                run tests"
+	@echo "${YELLOW}make run${RESET}                 run the app"
 	@echo
