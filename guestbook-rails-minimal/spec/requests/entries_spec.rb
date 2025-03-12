@@ -72,7 +72,7 @@ RSpec.describe "/entries" do
 
       it "redirects to the root path on successfull create" do
         post entries_url, params: {entry: valid_attributes}
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(entries_path)
       end
     end
 

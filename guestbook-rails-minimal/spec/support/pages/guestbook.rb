@@ -3,7 +3,7 @@
 require "support/pages/section/entries"
 
 class Guestbook < SitePrism::Page
-  set_url Rails.application.routes.url_helpers.root_path
+  set_url Rails.application.routes.url_helpers.entries_path
 
   element :new_entry, "a", text: "New entry"
   element :go_home, "a", text: "Back to entries"
