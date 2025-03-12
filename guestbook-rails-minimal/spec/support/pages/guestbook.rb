@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
+require "support/pages/section/entries"
 class Guestbook < SitePrism::Page
   set_url Rails.application.routes.url_helpers.root_path
 
   element :new_entry, "a", text: "New entry"
   element :go_home, "a", text: "Back to entries"
 
-  # TODO: switch to sub element
-  elements :entries, "#entries div"
+  element :error_message, "form [data-testid=error-message]"
+
+  sections :entries, ::Section::Entries, "#entries div[data-testid|=entry]"
 
   # TODO: strengthen matcher and switch to element
   def message
@@ -31,5 +33,13 @@ class Guestbook < SitePrism::Page
     action = Rails.application.routes.url_helpers.entries_path
     fill_in(...)
     find("form[action=\"#{action}\"] input[type=submit]").click
+  end
+
+  def errors
+    error_message.find_all("li").map(&:text)
+  end
+
+  def entries_text
+    entries.map { _1.entry_text.text }
   end
 end

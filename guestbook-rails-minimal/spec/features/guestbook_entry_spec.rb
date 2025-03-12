@@ -19,6 +19,7 @@ feature "Guestbook entry gets added and viewed", :js do
       guestbook.fill_in(
         title: "Amazing party",
         text: "Party on, this year and next 🎉",
+        name: "Amazing Amy",
         date: Time.zone.now
       )
       guestbook.submit!

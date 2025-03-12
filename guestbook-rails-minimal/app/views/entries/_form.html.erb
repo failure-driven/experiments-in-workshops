@@ -1,6 +1,6 @@
 <%= form_with(model: entry) do |form| %>
   <% if entry.errors.any? %>
-    <div style="color: red">
+    <div style="color: red" data-testid="error-message">
       <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
 
       <ul>

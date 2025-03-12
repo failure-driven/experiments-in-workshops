@@ -42,6 +42,10 @@ setup: setup-ruby setup-chrome
 test:
 	bin/rspec
 
+.PHONY: build
+build: test
+	bundle exec rubocop
+
 .PHONY: run
 run:
 	bin/rails server
