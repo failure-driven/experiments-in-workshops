@@ -29,10 +29,6 @@ feature "Guestbook entry gets added and viewed", :js do
       expect(guestbook.message).to eq "Entry was successfully created."
     end
 
-    When "the user navigates home" do
-      guestbook.go_home.click
-    end
-
     Then "the guestbook has the new message" do
       expect(guestbook.entries.map(&:text)).to match([
         /Party on, this year and next 🎉/

@@ -48,10 +48,6 @@ feature "User adds entry to guestbook", :js do
         expect(guestbook.message).to eq "Entry was successfully created."
       end
 
-      When "the user navigates home" do
-        guestbook.go_home.click
-      end
-
       Then "the guestbook has the new message" do
         expect(guestbook).to have_entries(count: 4)
         expect(guestbook.entries_text).to include(

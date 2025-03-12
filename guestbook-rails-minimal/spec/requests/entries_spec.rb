@@ -70,9 +70,9 @@ RSpec.describe "/entries" do
         }.to change(Entry, :count).by(1)
       end
 
-      it "redirects to the created entry" do
+      it "redirects to the root path on successfull create" do
         post entries_url, params: {entry: valid_attributes}
-        expect(response).to redirect_to(entry_url(Entry.last))
+        expect(response).to redirect_to(root_path)
       end
     end
 
