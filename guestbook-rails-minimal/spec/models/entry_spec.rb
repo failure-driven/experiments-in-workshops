@@ -20,4 +20,14 @@ RSpec.describe Entry do
     )
     expect(entry).not_to be_valid
   end
+
+  it "is not valid without name" do
+    entry = Entry.new(
+      title: "the title",
+      text: "the text",
+      name: "",
+      date: Time.zone.now
+    )
+    expect(entry).not_to be_valid
+  end
 end
