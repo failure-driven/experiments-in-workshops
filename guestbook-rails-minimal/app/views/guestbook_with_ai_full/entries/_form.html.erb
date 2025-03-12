@@ -1,0 +1,44 @@
+<p style="color: green"><%= notice %></p>
+
+<%= form_with(model: [:guestbook_with_ai_full, entry]) do |form| %>
+  <% if entry.errors.any? %>
+    <div style="color: red" data-testid="error-message">
+      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+        <% entry.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :text, style: "display: block" %>
+    <%= form.text_field :text %>
+  </div>
+
+  <div>
+    <%= form.label :generate_ai_text %>
+    <%= form.check_box :generate_ai_text %>
+  </div>
+
+  <div>
+    <%= form.label :generated_text, style: "display: block" %>
+    <%= form.text_field :generated_text, disabled: true %>
+  </div>
+
+  <div>
+    <%= form.label :use_generated_text %>
+    <%= form.check_box :use_generated_text, disabled: !form.object.generated_text.present? %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
