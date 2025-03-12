@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_26_074933) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_12_062251) do
   create_table "entries", force: :cascade do |t|
     t.string "title"
     t.string "text"
@@ -18,6 +18,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_26_074933) do
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "generate_ai_text", default: false, null: false
+    t.string "generated_text"
+    t.boolean "use_generated_text", default: false, null: false
   end
 
 end

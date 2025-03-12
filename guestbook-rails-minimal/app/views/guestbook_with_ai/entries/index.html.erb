@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Entries</h1>
+
+<div id="entries">
+  <% @entries.each do |entry| %>
+    <%= render entry %>
+  <% end %>
+</div>
+
+<%= link_to "New entry", new_guestbook_with_ai_entry_path %>
