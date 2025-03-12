@@ -24,7 +24,7 @@ module Pages
       action = Rails.application.routes.url_helpers.guestbook_with_ai_full_entries_path
       model = "entry"
       args.each do |field, value|
-        element = find("form[action=\"#{action}\"] input[name=\"#{model}[#{field}]\"]")
+        element = find("form[action^=\"#{action}\"] input[name=\"#{model}[#{field}]\"]")
         if SETTABLE_ELEMENTS.include? element[:type]
           element.set(value)
         else
@@ -36,7 +36,11 @@ module Pages
     def submit!(...)
       action = Rails.application.routes.url_helpers.guestbook_with_ai_full_entries_path
       fill_in(...)
-      find("form[action=\"#{action}\"] input[type=submit]").click
+      find("form[action^=\"#{action}\"] input[type=submit]").click
+    end
+
+    def check!
+      click_on("check")
     end
 
     def errors

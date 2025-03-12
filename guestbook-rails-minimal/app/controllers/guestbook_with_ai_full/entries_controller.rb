@@ -17,7 +17,10 @@ module GuestbookWithAIFull
       @entry = Entry.new(entry_params)
 
       if @entry.save
-        if @entry.generate_ai_text && @entry.generated_text.blank?
+        if @entry.generate_ai_text?
+          # TODO: move to a better place
+          generate_text_job = GenerateAITextJob.perform_later(@entry)
+          @entry.update!(generate_job_id: generate_text_job.job_id)
           flash.now[:notice] = "AI is generating the response, please wait..."
           render :new, status: :ok
         else
@@ -30,12 +33,22 @@ module GuestbookWithAIFull
 
     # PATCH/PUT /entries/1
     def update
-      if @entry.update(entry_params) && @entry.generate_ai_text && @entry.generated_text.present?
+      # TODO: check if still processing? or don't let it come here
+      if params[:button] == "check"
+        flash.now[:notice] = if @entry.generated_text.present? && @entry.generate_job_id.blank?
+          "AI generation complete"
+        else
+          "AI is generating the response, please wait..."
+        end
+        render :new, status: :ok
+      elsif @entry.update(entry_params) && @entry.generate_ai_text && @entry.generated_text.present?
         redirect_to guestbook_with_ai_full_root_path, notice: "Entry was successfully created."
+      elsif @entry.update(entry_params) && @entry.generate_ai_text && @entry.generated_text.blank?
+        flash.now[:notice] = "AI is generating the response, please wait..."
+        render :new, status: :ok
       elsif @entry.update(entry_params) && !@entry.generate_ai_text
         redirect_to guestbook_with_ai_full_root_path, notice: "Entry was successfully created."
       else
-        flash.now[:notice] = "AI is generating the response, please wait..."
         render :edit, status: :unprocessable_entity
       end
     end

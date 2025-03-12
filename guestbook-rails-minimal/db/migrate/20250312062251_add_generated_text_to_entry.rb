@@ -3,5 +3,6 @@ class AddGeneratedTextToEntry < ActiveRecord::Migration[7.1]
     add_column :entries, :generate_ai_text, :boolean, default: false, null: false
     add_column :entries, :generated_text, :string, null: true
     add_column :entries, :use_generated_text, :boolean, default: false, null: false
+    add_column :entries, :generate_job_id, :string, null: true
   end
 end

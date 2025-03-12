@@ -1,7 +1,13 @@
 <div id="<%= dom_id entry %>" data-testid="entry-<%= dom_id entry %>">
   <p>
     <strong>Text:</strong>
-    <span data-testid="entry-text"><%= entry.text %></span>
+    <span data-testid="entry-text">
+      <% if entry.use_generated_text? %>
+        <%= entry.generated_text %>
+      <% else %>
+        <%= entry.text %>
+      <% end %>
+    </span>
   </p>
 
   <p>

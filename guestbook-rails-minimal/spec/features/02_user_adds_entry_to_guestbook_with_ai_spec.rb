@@ -2,6 +2,8 @@
 
 require "rails_helper"
 
+ActiveJob::Base.queue_adapter = :test
+
 feature "User adds entry to guestbook", :js do
   let(:guestbook) { Pages::GuestbookWithAI.new }
 
@@ -77,7 +79,10 @@ feature "User adds entry to guestbook", :js do
 
       When "AI has finised generating the response" do
         pending "need background jobs with sidekiq"
-        Sidekiq::Worker.drain_all
+        # TODO: some kind of drain_all
+        ActiveJob::Base.queue_adapter.enqueued_jobs.each do |job|
+          ActiveJob::Base.execute(job)
+        end
       end
 
       Then "the visitor is told the message is successfully created" do

@@ -2,6 +2,8 @@
 
 require "rails_helper"
 
+ActiveJob::Base.queue_adapter = :test
+
 feature "User adds entry to guestbook", :js do
   let(:guestbook) { Pages::GuestbookWithAIFull.new }
 
@@ -63,25 +65,41 @@ feature "User adds entry to guestbook", :js do
 
       When "a new entry is added" do
         guestbook.new_entry.click
-        guestbook.fill_in(
+        guestbook.submit!(
           text: "like testing",
           name: "Positive Patricia",
           generate_ai_text: true
         )
-        guestbook.submit!
       end
 
       Then "the visitor is told AI is generating the response" do
         expect(guestbook.message).to eq "AI is generating the response, please wait..."
       end
 
-      When "AI has finised generating the response" do
-        pending "need background jobs with sidekiq"
-        Sidekiq::Worker.drain_all
+      When "AI has finished generating the response" do
+        # TODO: is there some kind of built in test adapter drain_all?
+        ActiveJob::Base.queue_adapter.enqueued_jobs.each do |job|
+          ActiveJob::Base.execute(job)
+        end
+      end
+
+      And "the user checks" do
+        guestbook.check!
+        SitePrism::Waiter.wait_until_true {
+          expect(page).to have_content "AI generation complete"
+        }
       end
 
       Then "the visitor is told the message is successfully created" do
-        expect(guestbook.message).to eq "Entry was successfully created."
+        guestbook.when_loaded do |page|
+          expect(page.message).to eq "AI generation complete"
+        end
+      end
+
+      When "the visitor chooses to use the generated text" do
+        guestbook.submit!(
+          use_generated_text: true
+        )
       end
 
       Then "the guestbook has the new message" do

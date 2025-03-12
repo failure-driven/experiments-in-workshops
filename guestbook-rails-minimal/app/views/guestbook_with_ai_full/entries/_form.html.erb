@@ -39,6 +39,12 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <% if form.object.generate_job_id %>
+      <%= form.button "check", value: :check %>
+      <%= form.submit disabled: true %>
+    <% else %>
+      <%= form.button "check", disabled: true %>
+      <%= form.submit %>
+    <% end %>
   </div>
 <% end %>
