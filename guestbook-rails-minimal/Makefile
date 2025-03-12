@@ -17,11 +17,17 @@ endef
 .PHONY: setup-ruby
 setup-ruby:
 	# TODO: check not installed
-	rvm install "ruby-3.2.2"
+	@echo "checking if ruby 3.2.2 is installed" + \
+		"otherwise will attempt to use ${GREEN}rvm${RESET} to install."
+	@ruby -v | grep 3.2.2 || \
+		rvm install "ruby-3.2.2" && \
+		echo "ruby 3.2.2 installed"
 
 .PHONY: setup-chrome
 setup-chrome:
 	# TODO: check not installed
+	# check on MacOS
+	# mdfind "kMDItemKind == 'Application'" | grep "Google Chrome"
 	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 	echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | \
 		sudo tee /etc/apt/sources.list.d/google-chrome.list
