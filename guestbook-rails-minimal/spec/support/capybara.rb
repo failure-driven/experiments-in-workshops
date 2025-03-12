@@ -2,6 +2,15 @@
 
 require "capybara-inline-screenshot/rspec"
 
+module SlomoBridge
+  TIMEOUT = ENV.fetch("SLOMO_MS", "0").to_i / 1000.0
+
+  def execute(*)
+    sleep TIMEOUT if TIMEOUT > 0
+    super
+  end
+end
+
 Capybara.javascript_driver = :selenium_chrome
 
 Capybara.register_driver :selenium_chrome do |app|
@@ -16,7 +25,10 @@ Capybara.register_driver :selenium_chrome do |app|
   Capybara::Selenium::Driver.new(
     app,
     **args
-  )
+  ).tap do |driver|
+    # Enable slomo mode
+    driver.browser.send(:bridge).singleton_class.prepend(SlomoBridge)
+  end
 end
 
 Capybara::Screenshot.register_driver(:selenium_chrome) do |driver, path|
