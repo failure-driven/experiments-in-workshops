@@ -36,6 +36,56 @@ just demo-ai
 
 just clean
 ```
+### PROGRESS
+
+#### COURSE ON THE DAY
+
+- what it's about
+- here is the how to guide
+- starting point
+  - extension - idea - _nice to have_
+- have a go ~10min
+- code along solution - run through solution
+- if not working check out ours and code along
+
+- **LAB 1** - getting started
+  - how to guide - MD
+  - happy path guestbook fill in and display
+  - ERROR case: deal with no name, no text - error case at model level + some
+    controller
+  - run through test as is
+  - show how to add enough for failure branch
+
+- **LAB 2** - add fields
+  - db migrations - maybe in sql - or show sql - update to structure.sql
+  - form fields
+  - potentially a fork in controller logic - or should this go to a service?
+
+- **LAB 3** - add AI
+  - add job
+  - add Generator with test adaptor
+  - kick off in controller/service
+  - test now pass
+
+#### TODO
+
+- [ ] do we need to know if it is published or not?
+- [ ] better names for the labs
+- [ ] selena simple slides
+- [ ] how to guide to be displayed on screen
+- [ ] basic styling - just polished enoughed
+- [ ] SQL over Arel
+- [ ] model names
+- [ ] 1 error handler in controllers - maybe
+- [ ] remove choice to use AI message in screen 3 - use it as an extension
+- [ ] turn off required params
+- [ ] how can we simplify the flow - just make all AI or another button or other???
+- [ ] base code in a commit
+  - [ ] 3 intermediate commits with commented out code and commented code
+  - [ ] see how we can make this work
+- [ ] optional look at helpers - page fragments
+
+#### DONE
 
 ### Guestbook rails minimal
 

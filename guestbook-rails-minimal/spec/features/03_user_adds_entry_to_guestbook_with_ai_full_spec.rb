@@ -76,6 +76,7 @@ feature "User adds entry to guestbook", :js do
         expect(guestbook.message).to eq "AI is generating the response, please wait..."
       end
 
+      # LAB 3 - START CODE
       When "AI has finished generating the response" do
         # TODO: is there some kind of built in test adapter drain_all?
         ActiveJob::Base.queue_adapter.enqueued_jobs.each do |job|
@@ -108,6 +109,7 @@ feature "User adds entry to guestbook", :js do
           "AI GENERATED like testing"
         )
       end
+      # LAB 3 - END CODE
     end
   end
 end

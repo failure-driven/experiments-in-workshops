@@ -63,6 +63,7 @@ feature "User adds entry to guestbook", :js do
         guestbook.load
       end
 
+      # LAB 2 - START CODE - need to add fields for table and modle to handle AI generation and options etc
       When "a new entry is added" do
         guestbook.new_entry.click
         guestbook.fill_in(
@@ -76,6 +77,7 @@ feature "User adds entry to guestbook", :js do
       Then "the visitor is told AI is generating the response" do
         expect(guestbook.message).to eq "AI is generating the response, please wait..."
       end
+      # LAB 2 - END CODE
 
       When "AI has finised generating the response" do
         pending "need background jobs with sidekiq"

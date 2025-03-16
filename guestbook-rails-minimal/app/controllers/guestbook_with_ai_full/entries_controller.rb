@@ -19,8 +19,10 @@ module GuestbookWithAIFull
       if @entry.save
         if @entry.generate_ai_text?
           # TODO: move to a better place
+          # LAB 3 - START CODE
           generate_text_job = GenerateAITextJob.perform_later(@entry)
           @entry.update!(generate_job_id: generate_text_job.job_id)
+          # LAB 3 - END CODE
           flash.now[:notice] = "AI is generating the response, please wait..."
           render :new, status: :ok
         else

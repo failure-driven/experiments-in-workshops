@@ -33,6 +33,7 @@ feature "User adds entry to guestbook", :js do
         guestbook.submit!
       end
 
+      # LAB 1 - START CODE - to be written
       Then "the visitor is told there is an error as the name is blank" do
         expect(guestbook.errors).to eq(["Name can't be blank"])
       end
@@ -43,6 +44,7 @@ feature "User adds entry to guestbook", :js do
         )
         guestbook.submit!
       end
+      # LAB 1 - END CODE
 
       Then "the visitor is told the message is successfully created" do
         expect(guestbook.message).to eq "Entry was successfully created."
