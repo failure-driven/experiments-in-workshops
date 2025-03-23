@@ -112,6 +112,10 @@ just clean
 
     # show stash by number
     git stash show -p stash@{0}
+
+    # push tags upstream
+    git push origin lab-1-start
+    git push origin --tags
     ```
   - [x] see how we can make this work
     - we committed start, commented out and end and it seems to work ok
