@@ -81,6 +81,7 @@ just clean
   - [ ] how can we simplify the flow - just make all AI or another button or other???
   - [ ] remove choice to use AI message in screen 3 - use it as an extension
 - [ ] optional look at helpers - page fragments - MM & SS not workshop
+  - [x] forms helper added to `spec/support/pages/helpers/forms_helper.rb`
 
 #### DONE
 
