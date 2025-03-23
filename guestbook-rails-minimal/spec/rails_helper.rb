@@ -20,6 +20,9 @@ require "rspec/rails"
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
+# loading helpers and sections ahead of other SitePrism pages that use them
+Rails.root.glob("spec/support/pages/helpers/**/*.rb").sort.each { |f| require f }
+Rails.root.glob("spec/support/pages/section/**/*.rb").sort.each { |f| require f }
 Rails.root.glob("spec/support/**/*.rb").sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.

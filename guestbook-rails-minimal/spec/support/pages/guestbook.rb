@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
-require "support/pages/section/entries"
-
 class Guestbook < SitePrism::Page
+  include ::Pages::Helpers::FormsHelper[
+    Rails.application.routes.url_helpers.entries_path,
+    Entry.name.downcase
+  ]
+
   set_url Rails.application.routes.url_helpers.entries_path
 
   element :new_entry, "a", text: "New entry"
@@ -15,25 +18,6 @@ class Guestbook < SitePrism::Page
   # TODO: strengthen matcher and switch to element
   def message
     find_all("p").first.text
-  end
-
-  def fill_in(**args)
-    action = Rails.application.routes.url_helpers.entries_path
-    model = "entry"
-    args.each do |field, value|
-      element = find("form[action=\"#{action}\"] input[name=\"#{model}[#{field}]\"]")
-      if element[:type] == "datetime-local"
-        element.set(value)
-      else
-        element.fill_in(with: value)
-      end
-    end
-  end
-
-  def submit!(...)
-    action = Rails.application.routes.url_helpers.entries_path
-    fill_in(...)
-    find("form[action=\"#{action}\"] input[type=submit]").click
   end
 
   def errors
