@@ -9,7 +9,7 @@ feature "Guestbook entry gets added and viewed", :js do
     end
 
     Then "the guestbook is empty" do
-      expect(guestbook.entries).to be_empty
+      expect(guestbook.entries(wait: 0)).to be_empty
     end
 
     When "a new entry is added" do
