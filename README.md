@@ -80,14 +80,41 @@ just clean
   - [ ] flow basic Form New -> publish
   - [ ] how can we simplify the flow - just make all AI or another button or other???
   - [ ] remove choice to use AI message in screen 3 - use it as an extension
-- [ ] ** base code in a commit
-  - [ ] 3 intermediate commits with commented out code and commented code
-  - [ ] see how we can make this work
 - [ ] optional look at helpers - page fragments - MM & SS not workshop
 - [ ] ** Add AI
 
 #### DONE
 
+- [x] base code in a commit
+  - [x] 3 intermediate commits with commented out code and commented code
+    ```sh
+    # list tags
+    git tag
+
+    # add a tag
+    git checkout <SHA>
+    git tag lab-1-start
+
+    # remove a tag
+    git tag --delete lab-1-start
+
+    # checkout a tag
+    git checkout lab-1-start
+
+    # save current code in a named stash
+    git stash save 'my idea for lab 1'
+
+    # list stashes
+    git stash list
+
+    # show last stash
+    git stash show -p
+
+    # show stash by number
+    git stash show -p stash@{0}
+    ```
+  - [x] see how we can make this work
+    - we committed start, commented out and end and it seems to work ok
 - [NOT] do we need to know if it is published or not? entry.published true | false
 - [x] turn off required params
 
