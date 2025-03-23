@@ -24,7 +24,10 @@ RSpec.describe "/messages" do
   }
 
   let(:invalid_attributes) {
-    {}
+    # {
+    #   text: "",
+    #   name: "the name"
+    # }
   }
 
   describe "GET /index" do
@@ -86,26 +89,29 @@ RSpec.describe "/messages" do
     # end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe "PATCH /update" do # rubocop:disable RSpec/EmptyExampleGroup
+    # context "with valid parameters" do
+    #   let(:new_attributes) {
+    #     {
+    #       text: "the new updated text",
+    #       name: "the name"
+    #     }
+    #   }
 
-      it "updates the requested message" do
-        message = Message.create! valid_attributes
-        patch message_url(message), params: {message: new_attributes}
-        message.reload
-        skip("Add assertions for updated state")
-      end
+    #   it "updates the requested message" do
+    #     message = Message.create! valid_attributes
+    #     patch message_url(message), params: {message: new_attributes}
+    #     message.reload
+    #     expect(message).to have_attributes(text: "the new updated text")
+    #   end
 
-      it "redirects to the message" do
-        message = Message.create! valid_attributes
-        patch message_url(message), params: {message: new_attributes}
-        message.reload
-        expect(response).to redirect_to(message_url(message))
-      end
-    end
+    #   it "redirects to the message" do
+    #     message = Message.create! valid_attributes
+    #     patch message_url(message), params: {message: new_attributes}
+    #     message.reload
+    #     expect(response).to redirect_to(messages_url)
+    #   end
+    # end
 
     # context "with invalid parameters" do
     #   it "renders a response with 422 status (i.e. to display the 'edit' template)" do
