@@ -34,6 +34,15 @@ setup-chrome:
 	sudo apt-get update
 	sudo apt-get install google-chrome-stable
 
+.PHONY: install
+install:
+	@command -v brew > /dev/null && \
+		( \
+			echo "${GREEN}✅ brew installed${RESET}" && \
+			brew bundle \
+		) || \
+		echo "${YELLOW}no brew - you on your own${RESET}"
+
 .PHONY: setup
 setup: setup-ruby setup-chrome
 	bin/setup
@@ -42,6 +51,14 @@ setup: setup-ruby setup-chrome
 test:
 	bin/rspec
 
+.PHONY: lint
+lint:
+	bundle exec rubocop
+
+.PHONY: lint-fix
+lint-fix:
+	bundle exec rubocop -A
+
 .PHONY: build
 build: test
 	bundle exec rubocop
@@ -49,6 +66,31 @@ build: test
 .PHONY: run
 run:
 	bin/rails server
+
+.PHONY: demo-generate_text
+demo-generate_text:
+	bin/rails runner 'gen = AITextGenerator; \
+		puts gen.generate_text(ARGV.join(" "))' \
+		I love the testing Dem and in pARticular how to getting started with testing
+
+.PHONY: demo-generate_text-ollama
+demo-generate_text-ollama:
+	TEXT_GENERATOR=OllamaAIGenerator make demo-generate_text
+
+.PHONY: ollama-up
+ollama-up:
+	ollama serve
+
+.PHONY: ollama-mistral-up
+ollama-mistral-up:
+	ollama run mistral
+
+.PHONY: demo-ollama-mistral
+demo-ollama-mistral:
+	@echo "make install"
+	@echo "make ollama-up"
+	@echo "make ollama-mistral-up"
+	@echo "make demo-generate_text-ollama"
 
 .PHONY: usage
 usage:

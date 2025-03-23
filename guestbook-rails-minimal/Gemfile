@@ -17,6 +17,9 @@ gem "puma", ">= 5.0"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[windows jruby]
 
+# ruby OpenAI interface library
+gem "ruby-openai", "~> 8.0"
+
 group :test do
   gem "capybara", "~> 3.40"
   gem "capybara-inline-screenshot", "~> 2.2"

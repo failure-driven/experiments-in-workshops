@@ -81,10 +81,29 @@ just clean
   - [ ] how can we simplify the flow - just make all AI or another button or other???
   - [ ] remove choice to use AI message in screen 3 - use it as an extension
 - [ ] optional look at helpers - page fragments - MM & SS not workshop
-- [ ] ** Add AI
 
 #### DONE
 
+- [x] Add AI
+  ```sh
+  # will output the order of operations
+  make demo-ollama-mistral
+
+  # install ollama via homebrew
+  make install
+
+  # run ollama on local machine
+  make ollama-up
+
+  # run ollama mistral - may need ~4GB download
+  make ollama-mistral-up
+
+  # generate some text using ollama
+  make demo-generate_text-ollama
+
+  # run rails with ollama
+  TEXT_GENERATOR=OllamaAIGenerator bin/rails server
+  ```
 - [x] base code in a commit
   - [x] 3 intermediate commits with commented out code and commented code
     ```sh

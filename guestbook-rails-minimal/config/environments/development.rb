@@ -62,4 +62,7 @@ Rails.application.configure do
 
   # Allow requests from GitHub Codespaces domain in development
   config.hosts << /.*\.app\.github\.dev/
+
+  config.logger = Logger.new($stdout)
+  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", :debug).to_sym
 end

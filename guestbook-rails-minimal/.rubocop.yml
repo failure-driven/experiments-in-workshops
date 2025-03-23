@@ -26,6 +26,10 @@ AllCops:
 
 # any rubocop overrides live in here
 
+Layout/CommentIndentation:
+  Exclude:
+    - '**/Brewfile'
+
 Rails/I18nLocaleTexts:
   Enabled: false
 
@@ -42,6 +46,7 @@ RSpec/ExampleLength:
     - heredoc
     - hash
     - array
+    - method_call
   Exclude:
     - spec/features/**/*
 
