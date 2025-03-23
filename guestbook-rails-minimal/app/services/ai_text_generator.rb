@@ -27,13 +27,6 @@ class AITextGenerator
     @logger ||= Rails.logger
   end
 
-  class OpenAIGenerator
-    # TODO
-    def generate_text(input_text)
-      raise NotImplementedError, "generate_text not implemented for OpenAIGenerator"
-    end
-  end
-
   class BedrockAIGenerator
     # TODO
     def generate_text(input_text)
@@ -49,7 +42,7 @@ class AITextGenerator
 
   VALID_GENERATORS = {
     TextGenerator::OllamaAIGenerator.name.demodulize => TextGenerator::OllamaAIGenerator,
-    OpenAIGenerator.name.demodulize => OpenAIGenerator,
+    TextGenerator::OpenAIGenerator.name.demodulize => TextGenerator::OpenAIGenerator,
     BedrockAIGenerator.name.demodulize => BedrockAIGenerator,
     NoopGenerator.name.demodulize => NoopGenerator
   }.freeze

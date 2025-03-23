@@ -77,6 +77,10 @@ demo-generate_text:
 demo-generate_text-ollama:
 	TEXT_GENERATOR=OllamaAIGenerator make demo-generate_text
 
+.PHONY: demo-generate_text-openai
+demo-generate_text-openai:
+	TEXT_GENERATOR=OpenAIGenerator make demo-generate_text
+
 .PHONY: ollama-up
 ollama-up:
 	ollama serve

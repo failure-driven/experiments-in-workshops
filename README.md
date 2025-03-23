@@ -103,7 +103,16 @@ just clean
 
   # run rails with ollama
   TEXT_GENERATOR=OllamaAIGenerator bin/rails server
+
+  # generate some text using OpenAI
+  exoprt OPENAI_ACCESS_TOKEN=sk-...8z8
+  make demo-generate_text-openai
+
+  # run rails with OpenAI
+  exoprt OPENAI_ACCESS_TOKEN=sk-...8z8
+  TEXT_GENERATOR=OpenAIGenerator bin/rails server
   ```
+
 - [x] base code in a commit
   - [x] 3 intermediate commits with commented out code and commented code
     ```sh
