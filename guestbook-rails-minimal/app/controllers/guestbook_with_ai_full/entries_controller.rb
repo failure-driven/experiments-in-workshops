@@ -14,7 +14,7 @@ module GuestbookWithAIFull
 
     # POST /entries
     def create
-      @entry = Entry.new(entry_params)
+      @entry = Entry.new(params[:entry])
 
       if @entry.save
         if @entry.generate_ai_text?
@@ -43,12 +43,12 @@ module GuestbookWithAIFull
           "AI is generating the response, please wait..."
         end
         render :new, status: :ok
-      elsif @entry.update(entry_params) && @entry.generate_ai_text && @entry.generated_text.present?
+      elsif @entry.update(params[:entry]) && @entry.generate_ai_text && @entry.generated_text.present?
         redirect_to guestbook_with_ai_full_root_path, notice: "Entry was successfully created."
-      elsif @entry.update(entry_params) && @entry.generate_ai_text && @entry.generated_text.blank?
+      elsif @entry.update(params[:entry]) && @entry.generate_ai_text && @entry.generated_text.blank?
         flash.now[:notice] = "AI is generating the response, please wait..."
         render :new, status: :ok
-      elsif @entry.update(entry_params) && !@entry.generate_ai_text
+      elsif @entry.update(params[:entry]) && !@entry.generate_ai_text
         redirect_to guestbook_with_ai_full_root_path, notice: "Entry was successfully created."
       else
         render :edit, status: :unprocessable_entity
@@ -62,19 +62,17 @@ module GuestbookWithAIFull
       @entry = Entry.find(params[:id])
     end
 
+    # NOTE: sepcifying each individual parameter is a more secure way of doing parameters
     # Only allow a list of trusted parameters through.
-    def entry_params
-      params.require(:entry).permit!
-      # NOTE: more secure to specify trusted parameters but left out for
-      # simplicity
-      #   params.require(:entry).permit(
-      #     :title,
-      #     :text,
-      #     :name,
-      #     :date,
-      #     :generate_ai_text,
-      #     :use_generated_text
-      #   )
-    end
+    # def entry_params
+    #   params.require(:entry).permit(
+    #     :title,
+    #     :text,
+    #     :name,
+    #     :date,
+    #     :generate_ai_text,
+    #     :use_generated_text
+    #   )
+    # end
   end
 end

@@ -38,5 +38,9 @@ module GuestbookRailsMinimal
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # NOTE: explicit specify permitted parameters has been left out to simplify
+    # this project
+    config.action_controller.permit_all_parameters = true
   end
 end
