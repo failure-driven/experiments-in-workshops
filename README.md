@@ -69,23 +69,27 @@ just clean
 
 #### TODO
 
-- [ ] do we need to know if it is published or not?
-- [ ] better names for the labs
 - [ ] selena simple slides
-- [ ] how to guide to be displayed on screen
-- [ ] basic styling - just polished enoughed
+  - [ ] better names for the labs
+  - [ ] how to guide to be displayed on screen
+- [ ] basic styling CSS - just polished enoughed
 - [ ] SQL over Arel
 - [ ] model names
 - [ ] 1 error handler in controllers - maybe
-- [ ] remove choice to use AI message in screen 3 - use it as an extension
-- [ ] turn off required params
-- [ ] how can we simplify the flow - just make all AI or another button or other???
-- [ ] base code in a commit
+- [ ] flow of the system Form New -> wait for AI -> publish
+  - [ ] flow basic Form New -> publish
+  - [ ] how can we simplify the flow - just make all AI or another button or other???
+  - [ ] remove choice to use AI message in screen 3 - use it as an extension
+- [ ] ** base code in a commit
   - [ ] 3 intermediate commits with commented out code and commented code
   - [ ] see how we can make this work
-- [ ] optional look at helpers - page fragments
+- [ ] optional look at helpers - page fragments - MM & SS not workshop
+- [ ] ** Add AI
 
 #### DONE
+
+- [NOT] do we need to know if it is published or not? entry.published true | false
+- [x] turn off required params
 
 ### Guestbook rails minimal
 

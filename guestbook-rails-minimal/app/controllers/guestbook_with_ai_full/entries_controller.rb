@@ -64,14 +64,17 @@ module GuestbookWithAIFull
 
     # Only allow a list of trusted parameters through.
     def entry_params
-      params.require(:entry).permit(
-        :title,
-        :text,
-        :name,
-        :date,
-        :generate_ai_text,
-        :use_generated_text
-      )
+      params.require(:entry).permit!
+      # NOTE: more secure to specify trusted parameters but left out for
+      # simplicity
+      #   params.require(:entry).permit(
+      #     :title,
+      #     :text,
+      #     :name,
+      #     :date,
+      #     :generate_ai_text,
+      #     :use_generated_text
+      #   )
     end
   end
 end
