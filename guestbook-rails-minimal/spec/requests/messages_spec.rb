@@ -24,10 +24,10 @@ RSpec.describe "/messages" do
   }
 
   let(:invalid_attributes) {
-    # {
-    #   text: "",
-    #   name: "the name"
-    # }
+    {
+      text: "",
+      name: "the name"
+    }
   }
 
   describe "GET /index" do
@@ -75,51 +75,51 @@ RSpec.describe "/messages" do
       end
     end
 
-    # context "with invalid parameters" do
-    #   it "does not create a new Message" do
-    #     expect {
-    #       post messages_url, params: {message: invalid_attributes}
-    #     }.not_to change(Message, :count)
-    #   end
+    context "with invalid parameters" do
+      it "does not create a new Message" do
+        expect {
+          post messages_url, params: {message: invalid_attributes}
+        }.not_to change(Message, :count)
+      end
 
-    #   it "renders a response with 422 status (i.e. to display the 'new' template)" do
-    #     post messages_url, params: {message: invalid_attributes}
-    #     expect(response).to have_http_status(:unprocessable_entity)
-    #   end
-    # end
+      it "renders a response with 422 status (i.e. to display the 'new' template)" do
+        post messages_url, params: {message: invalid_attributes}
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 
-  describe "PATCH /update" do # rubocop:disable RSpec/EmptyExampleGroup
-    # context "with valid parameters" do
-    #   let(:new_attributes) {
-    #     {
-    #       text: "the new updated text",
-    #       name: "the name"
-    #     }
-    #   }
+  describe "PATCH /update" do
+    context "with valid parameters" do
+      let(:new_attributes) {
+        {
+          text: "the new updated text",
+          name: "the name"
+        }
+      }
 
-    #   it "updates the requested message" do
-    #     message = Message.create! valid_attributes
-    #     patch message_url(message), params: {message: new_attributes}
-    #     message.reload
-    #     expect(message).to have_attributes(text: "the new updated text")
-    #   end
+      it "updates the requested message" do
+        message = Message.create! valid_attributes
+        patch message_url(message), params: {message: new_attributes}
+        message.reload
+        expect(message).to have_attributes(text: "the new updated text")
+      end
 
-    #   it "redirects to the message" do
-    #     message = Message.create! valid_attributes
-    #     patch message_url(message), params: {message: new_attributes}
-    #     message.reload
-    #     expect(response).to redirect_to(messages_url)
-    #   end
-    # end
+      it "redirects to the message" do
+        message = Message.create! valid_attributes
+        patch message_url(message), params: {message: new_attributes}
+        message.reload
+        expect(response).to redirect_to(messages_url)
+      end
+    end
 
-    # context "with invalid parameters" do
-    #   it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-    #     message = Message.create! valid_attributes
-    #     patch message_url(message), params: {message: invalid_attributes}
-    #     expect(response).to have_http_status(:unprocessable_entity)
-    #   end
-    # end
+    context "with invalid parameters" do
+      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
+        message = Message.create! valid_attributes
+        patch message_url(message), params: {message: invalid_attributes}
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 
   describe "DELETE /destroy" do

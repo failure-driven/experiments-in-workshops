@@ -33,17 +33,17 @@ feature "User adds message to guestbook", :js do
         guestbook.submit!
       end
 
-      # Then "the visitor is told there is an error as the name is blank" do
-      #   pending "validation on name and text existing"
-      #   expect(guestbook.errors).to eq(["Name can't be blank"])
-      # end
+      Then "the visitor is told there is an error as the name is blank" do
+        # pending "validation on name and text existing"
+        expect(guestbook.errors).to eq(["Name can't be blank"])
+      end
 
-      # When "the visitor submits their form with their name" do
-      #   guestbook.fill_in(
-      #     name: "Positive Patricia"
-      #   )
-      #   guestbook.submit!
-      # end
+      When "the visitor submits their form with their name" do
+        guestbook.fill_in(
+          name: "Positive Patricia"
+        )
+        guestbook.submit!
+      end
 
       Then "the visitor is told the message is successfully created" do
         expect(guestbook.message).to eq "Message was successfully created."
