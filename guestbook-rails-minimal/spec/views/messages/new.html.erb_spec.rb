@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe "messages/new" do
   before do
     assign(:message, Message.new(

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "rails_helper"
-
 RSpec.describe AITextGenerator do
   it "generates text" do
     expect(AITextGenerator.generate_text("some text")).to eq "AI GENERATED some text"

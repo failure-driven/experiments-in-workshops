@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "rails_helper"
-
 feature "User adds entry to guestbook", :js do
   let(:guestbook) { Guestbook.new }
 

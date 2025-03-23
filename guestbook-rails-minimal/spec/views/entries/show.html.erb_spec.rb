@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe "entries/show" do
   before do
     assign(:entry, Entry.create!(

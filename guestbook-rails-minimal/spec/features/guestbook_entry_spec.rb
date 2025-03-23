@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "rails_helper"
-
 feature "Guestbook entry gets added and viewed", :js do
   let(:guestbook) { Guestbook.new }
 

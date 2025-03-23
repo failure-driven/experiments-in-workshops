@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe Entry do
   it "is valid" do
     entry = Entry.new(

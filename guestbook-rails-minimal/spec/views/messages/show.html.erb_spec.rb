@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe "messages/show" do
   before do
     assign(:message, Message.create!(

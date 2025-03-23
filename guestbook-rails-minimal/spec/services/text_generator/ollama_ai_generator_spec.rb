@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "rails_helper"
-
 RSpec.describe TextGenerator::OllamaAIGenerator do
   before do
     allow(OpenAI::Client).to receive(:new).and_return(mock_chat)

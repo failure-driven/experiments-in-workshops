@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "rails_helper"
-
 feature "It works, root rails demo page", :js do
   let(:it_works_root) { ItWorksRoot.new }
 

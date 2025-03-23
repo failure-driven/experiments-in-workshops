@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe Message do
   it "is valid" do
     message = Message.new(

@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe "entries/edit" do
   let(:entry) {
     Entry.create!(

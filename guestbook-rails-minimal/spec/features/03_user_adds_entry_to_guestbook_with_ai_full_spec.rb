@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "rails_helper"
-
 ActiveJob::Base.queue_adapter = :test
 
 feature "User adds entry to guestbook", :js do

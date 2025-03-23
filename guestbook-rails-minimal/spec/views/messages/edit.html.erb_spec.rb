@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe "messages/edit" do
   let(:message) {
     Message.create!(

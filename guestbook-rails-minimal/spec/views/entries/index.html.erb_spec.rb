@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe "entries/index" do
   before do
     assign(:entries, [

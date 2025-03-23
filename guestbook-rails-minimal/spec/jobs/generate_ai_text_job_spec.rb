@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe GenerateAITextJob do
   let(:entry) do
     Entry.new(
