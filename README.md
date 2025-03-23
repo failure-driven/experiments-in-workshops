@@ -74,6 +74,7 @@ just clean
   - [ ] how to guide to be displayed on screen
 - [ ] basic styling CSS - just polished enoughed
 - [ ] SQL over Arel
+  - [x] for published query
 - [ ] model names
 - [ ] 1 error handler in controllers - maybe
 - [ ] flow of the system Form New -> wait for AI -> publish
