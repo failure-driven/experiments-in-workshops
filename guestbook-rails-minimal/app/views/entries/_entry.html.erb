@@ -1,22 +1,23 @@
-<div id="<%= dom_id entry %>" data-testid="entry-<%= dom_id entry %>">
-  <p>
-    <strong>Title:</strong>
-    <%= entry.title %>
-  </p>
+<div id="<%= dom_id entry %>" class="card  w-75 mb-3" data-testid="entry-<%= dom_id entry %>">
+  <div class="card-body">
+    <p>
+      <strong>Title:</strong>
+      <%= entry.title %>
+    </p>
 
-  <p>
-    <strong>Text:</strong>
-    <span data-testid="entry-text"><%= entry.text %></span>
-  </p>
+    <p>
+      <strong>Text:</strong>
+      <span data-testid="entry-text"><%= entry.text %></span>
+    </p>
 
-  <p>
-    <strong>Name:</strong>
-    <%= entry.name %>
-  </p>
+    <p>
+      <strong>Name:</strong>
+      <%= entry.name %>
+    </p>
 
-  <p>
-    <strong>Date:</strong>
-    <%= entry.date %>
-  </p>
-
+    <p>
+      <strong>Date:</strong>
+      <%= entry.date %>
+    </p>
+  </div>
 </div>
