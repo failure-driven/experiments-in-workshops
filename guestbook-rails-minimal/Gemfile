@@ -20,6 +20,10 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 # ruby OpenAI interface library
 gem "ruby-openai", "~> 8.0"
 
+# styling
+gem "sassc-rails", "~> 2.1"
+gem "bootstrap", "~> 5.3"
+
 group :test do
   gem "capybara", "~> 3.40"
   gem "capybara-inline-screenshot", "~> 2.2"
