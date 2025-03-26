@@ -1,11 +1,19 @@
-<p style="color: green"><%= notice %></p>
+<section class="container">
+  <p style="color: green"><%= notice %></p>
 
-<h1>Entries</h1>
+  <h1>Entries</h1>
 
-<div id="entries">
-  <% @entries.each do |entry| %>
-    <%= render entry %>
-  <% end %>
-</div>
+  <div id="entries" class="grid mb-8 border border-gray-200 rounded-lg shadow-xs dark:border-gray-700 md:mb-12 md:grid-cols-2 bg-white dark:bg-gray-800">
+    <% @entries.each do |entry| %>
+      <%= render entry %>
+    <% end %>
+  </div>
 
-<%= link_to "New entry", new_guestbook_with_ai_entry_path %>
+  <div class="grid mb-8">
+    <%=
+      link_to "New entry",
+      new_guestbook_with_ai_entry_path,
+      class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+    %>
+  </div>
+</section>

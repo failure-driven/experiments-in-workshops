@@ -65,7 +65,7 @@ build: test
 
 .PHONY: run
 run:
-	bin/rails server
+	bin/dev
 
 .PHONY: demo-generate_text
 demo-generate_text:
