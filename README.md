@@ -73,10 +73,21 @@ just clean
   - [ ] better names for the labs
   - [ ] how to guide to be displayed on screen
 - [ ] basic styling CSS - just polished enoughed
+  - [ ] pure CSS ontop of basic rails forms
+  - [x] bulma
+  - [x] tailwind (_in git history_)
+  - [x] bootstrap (_in git history_)
+  - [x] bootstrap CDN (_in git history_)
 - [ ] SQL over Arel
   - [x] for published query
 - [ ] model names
 - [ ] 1 error handler in controllers - maybe
+- [ ] simplify controller for AI call
+- [ ] Wait for job
+  - [x] current button
+  - [ ] retrying redirect
+  - [ ] turbo
+  - [ ] ReactJS
 - [ ] flow of the system Form New -> wait for AI -> publish
   - [ ] flow basic Form New -> publish
   - [ ] how can we simplify the flow - just make all AI or another button or other???
