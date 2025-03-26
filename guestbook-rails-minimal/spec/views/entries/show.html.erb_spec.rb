@@ -1,7 +1,6 @@
 RSpec.describe "entries/show" do
   before do
     assign(:entry, Entry.create!(
-      title: "Title",
       text: "Text",
       name: "Name"
     ))
@@ -9,7 +8,6 @@ RSpec.describe "entries/show" do
 
   it "renders attributes in <p>", :aggregate_failures do
     render
-    expect(rendered).to match(/Title/)
     expect(rendered).to match(/Text/)
     expect(rendered).to match(/Name/)
   end

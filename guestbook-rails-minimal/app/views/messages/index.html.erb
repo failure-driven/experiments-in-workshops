@@ -1,7 +1,9 @@
-<p class="notification is-primary is-light">
-  <button class="delete"></button>
-  <%= notice %>
-</p>
+<% if notice %>
+  <p class="notification is-primary is-light">
+    <button class="delete"></button>
+    <%= notice %>
+  </p>
+<% end %>
 
 <h1 class="title">Messages</h1>
 
