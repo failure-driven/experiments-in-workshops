@@ -1,6 +1,7 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Home</h1>
+<div class="notification">
+  <button class="delete"></button>
+  <%= notice %>
+</div>
 
 <div>
   <p>
@@ -11,6 +12,9 @@
   </p>
   <p>
     <%= link_to guestbook_with_ai_full_entries_path, guestbook_with_ai_full_entries_path %>
+  </p>
+  <p>
+    <%= link_to messages_path, messages_path %>
   </p>
   <p>
     <%= link_to seed_index_path, seed_index_path %>

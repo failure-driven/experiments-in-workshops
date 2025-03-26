@@ -1,27 +1,35 @@
 <%= form_with(model: message) do |form| %>
   <% if message.errors.any? %>
-    <div style="color: red"  data-testid="error-message">
-      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+    <article class="message is-danger" data-testid="error-message">
+      <div class="message-body">
+        <h2 class="subtitle"><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
 
-      <ul>
-        <% message.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+        <ul>
+          <% message.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </article>
   <% end %>
 
-  <div>
-    <%= form.label :text, style: "display: block" %>
-    <%= form.text_field :text %>
+  <div class="field">
+    <%= form.label :text, class: "label" %>
+    <div class="control">
+      <%= form.text_field :text, class: "input" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="field">
+    <%= form.label :name, class: "label" %>
+    <div class="control">
+      <%= form.text_field :name, class: "input" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="field">
+    <div class="control">
+      <%= form.submit class: "button is-link" %>
+    </div>
   </div>
 <% end %>

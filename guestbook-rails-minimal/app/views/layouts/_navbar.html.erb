@@ -1,0 +1,12 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <%= link_to "HOME", root_path, class: "navbar-item" %>
+      <%= link_to entries_path, entries_path, class: "navbar-item" %>
+      <%= link_to guestbook_with_ai_entries_path, guestbook_with_ai_entries_path, class: "navbar-item" %>
+      <%= link_to guestbook_with_ai_full_entries_path, guestbook_with_ai_full_entries_path, class: "navbar-item" %>
+      <%= link_to messages_path, messages_path, class: "navbar-item" %>
+      <%= link_to seed_index_path, seed_index_path, class: "navbar-item" %>
+    </div>
+  </div>
+</nav>
