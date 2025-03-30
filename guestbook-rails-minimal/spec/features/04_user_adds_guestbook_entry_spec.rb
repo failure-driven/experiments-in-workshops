@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
+ActiveJob::Base.queue_adapter = :test
+
 feature "User adds guestbook entry", :js do
+  include ActiveJob::TestHelper
+
+  after do
+    clear_enqueued_jobs
+  end
+
   let(:guestbook) { Pages::GuestbookEntries.new }
 
   context "when there are existing guestbook entries" do
@@ -76,7 +84,31 @@ feature "User adds guestbook entry", :js do
         guestbook.generate_ai_body.click
       end
 
+      Then "the user is notified that the AI is generating the text" do
+        expect(guestbook.notification).to eq "AI text is being generated."
+      end
+
+      Then "When they refresh" do
+        guestbook.refresh.click
+      end
+
+      Then "the user is still notified text generation is in progress" do
+        expect(guestbook.notification).to eq "AI text is being generated."
+      end
+
+      When "AI has finished generating the response" do
+        perform_enqueued_jobs
+      end
+
+      And "they refresh" do
+        guestbook.refresh.click
+      end
+
       Then "the generated AI text is displayed" do
+        SitePrism::Waiter.wait_until_true {
+          expect(page).to have_content "AI text successfully generated."
+        }
+        expect(guestbook.notification).to eq "AI text successfully generated."
         expect(guestbook.generated_ai_body).to have_text "AI GENERATED Finally understood the benefits fo testing first"
       end
 
@@ -85,6 +117,9 @@ feature "User adds guestbook entry", :js do
       end
 
       Then "the visitor sees the guestbook entry is updated" do
+        SitePrism::Waiter.wait_until_true {
+          expect(page).to have_content "Guestbook entry was successfully updated."
+        }
         expect(guestbook.notification).to eq "Guestbook entry was successfully updated."
         expect(guestbook.entry_body).to have_text "AI GENERATED Finally understood the benefits fo testing first"
       end

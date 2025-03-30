@@ -19,6 +19,8 @@ module Pages
     element :update_generated_guestbook_entry, "[data-testid=update-generated-guestbook-entry]"
     element :generated_ai_body, "[data-testid=generated-ai-body]"
 
+    element :refresh, "[data-testid=refresh]"
+
     element :error_message, "form [data-testid=error-message]"
 
     element :entry_body, "[data-testid=body]"

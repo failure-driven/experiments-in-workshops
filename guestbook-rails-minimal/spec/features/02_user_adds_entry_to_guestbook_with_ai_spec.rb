@@ -3,6 +3,12 @@
 ActiveJob::Base.queue_adapter = :test
 
 feature "User adds entry to guestbook", :js do
+  include ActiveJob::TestHelper
+
+  after do
+    clear_enqueued_jobs
+  end
+
   let(:guestbook) { Pages::GuestbookWithAI.new }
 
   context "when there are existing guestbook entries" do

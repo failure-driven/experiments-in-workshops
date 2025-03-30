@@ -3,6 +3,14 @@
 ActiveJob::Base.queue_adapter = :test
 
 feature "User adds message to guestbook", :js do
+  include ActiveJob::TestHelper
+
+  before do
+    # TODO: this is actually to clear the jobs from some spec/request specs
+    # triggering jobs - shoud do this in spec/rails_helper.rb
+    clear_enqueued_jobs
+  end
+
   let(:guestbook) { Pages::GuestbookMessage.new }
 
   context "when there are existing guestbook entries" do
@@ -47,9 +55,10 @@ feature "User adds message to guestbook", :js do
 
       And "AI has finished generating the response" do
         # TODO: is there some kind of built in test adapter drain_all?
-        ActiveJob::Base.queue_adapter.enqueued_jobs.each do |job|
-          ActiveJob::Base.execute(job)
-        end
+        # ActiveJob::Base.queue_adapter.enqueued_jobs.each do |job|
+        #   ActiveJob::Base.execute(job)
+        # end
+        perform_enqueued_jobs
         guestbook.check!
         SitePrism::Waiter.wait_until_true {
           expect(page).to have_no_content "AI generation complete"
@@ -58,8 +67,9 @@ feature "User adds message to guestbook", :js do
       end
 
       Then "the visitor is told the message is successfully created" do
-        # pending "redirect to edit path"
-        expect(guestbook.message).to eq "Message was successfully created."
+        guestbook.when_loaded do |page|
+          expect(page.message).to eq "Message was successfully created."
+        end
       end
 
       Then "the guestbook has the new message" do

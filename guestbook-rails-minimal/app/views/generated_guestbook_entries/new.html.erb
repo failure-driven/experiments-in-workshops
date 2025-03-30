@@ -1,5 +1,7 @@
 <h1 class="title">New generated guestbook entry</h1>
 
+<p style="color: green"><%= notice %></p>
+
 <%= form_with(model: @generated_guestbook_entry.guestbook_entry) do |form| %>
   <div class="field">
     <%= form.label :body, class: "label" %>
@@ -30,6 +32,17 @@
     <%= form.text_area :body, class: "textarea", rows: "3", data: { testid: "generated-ai-body" }  %>
   </div>
 
+  <% if @generated_guestbook_entry.body.blank? %>
+    <p class="control">
+      <%= button_to "Refresh",
+        generated_guestbook_entries_path(@generated_guestbook_entry.id),
+        method: :patch,
+        params: { refresh: 1 },
+        class: "button is-link",
+        data: { testid: "refresh" }
+      %>
+    </p>
+  <% end %>
   <div class="control">
     <%= form.submit class: "button is-link", data: { testid: "update-generated-guestbook-entry" } %>
   </div>
