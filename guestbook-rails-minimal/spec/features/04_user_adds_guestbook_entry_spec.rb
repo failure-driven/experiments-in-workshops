@@ -32,7 +32,6 @@ feature "User adds guestbook entry", :js do
       end
 
       Then "the visitor is told there is an error as the name is blank" do
-        pending "validation on name and body existing"
         expect(guestbook.errors).to eq(["Name can't be blank"])
       end
 

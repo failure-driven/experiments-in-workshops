@@ -17,11 +17,17 @@ RSpec.describe "/guestbook_entries" do
   # GuestbookEntry. As you add validations to GuestbookEntry, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      body: "the body",
+      name: "the name"
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      body: "",
+      name: "the name"
+    }
   }
 
   describe "GET /index" do
@@ -86,14 +92,17 @@ RSpec.describe "/guestbook_entries" do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          body: "the new updated body",
+          name: "the name"
+        }
       }
 
       it "updates the requested guestbook_entry" do
         guestbook_entry = GuestbookEntry.create! valid_attributes
         patch guestbook_entry_url(guestbook_entry), params: {guestbook_entry: new_attributes}
         guestbook_entry.reload
-        skip("Add assertions for updated state")
+        expect(guestbook_entry).to have_attributes(body: "the new updated body")
       end
 
       it "redirects to the guestbook_entry" do
