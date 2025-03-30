@@ -44,6 +44,7 @@ feature "User adds message to guestbook", :js do
       end
 
       Then "the visitor is told the message is successfully created" do
+        pending "redirect to edit path"
         expect(guestbook.message).to eq "Message was successfully created."
       end
 

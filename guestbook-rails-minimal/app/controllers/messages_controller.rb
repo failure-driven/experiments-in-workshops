@@ -24,7 +24,12 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-      redirect_to messages_path, notice: "Message was successfully created."
+      generate_text_job = GenerateAIMessageJob.perform_later(@message)
+      # this is the code we put in before creating a job
+      # generated_text = AITextGenerator.generate_text(@message.text)
+      # @message.update!(generated_text: generated_text)
+
+      redirect_to edit_message_path(@message), notice: "Message was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +38,6 @@ class MessagesController < ApplicationController
   # PATCH/PUT /messages/1
   def update
     if @message.update(message_params)
-      # redirect_to @message, notice: "Message was successfully updated.", status: :see_other
       redirect_to messages_path, notice: "Message was successfully created."
     else
       render :edit, status: :unprocessable_entity

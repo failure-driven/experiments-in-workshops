@@ -13,12 +13,27 @@
     </article>
   <% end %>
 
+  <% unless message.generated_text.present? %>
+    <div>
+      Message still being generated. <%= link_to "refresh", edit_message_path(message), class: "button is-success" %>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= form.label :text, class: "label" %>
     <div class="control">
       <%= form.text_field :text, class: "input" %>
     </div>
   </div>
+
+  <% if message.generated_text.present? %>
+    <div class="field">
+      <%= form.label :generated_text, class: "label" %>
+      <div class="control">
+        <%= form.text_field :generated_text, class: "input" %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :name, class: "label" %>

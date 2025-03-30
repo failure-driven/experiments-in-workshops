@@ -1,7 +1,11 @@
 <div id="<%= dom_id message %>" class="card-content" data-testid="message-<%= dom_id message %>">
   <p>
     <strong>Text:</strong>
-    <span data-testid="message-text"><%= message.text %></span>
+    <% if message.generated_text.present? %>
+      <span data-testid="generated-text"><%= message.generated_text %></span>
+    <% else %>
+      <span data-testid="message-text"><%= message.text %></span>
+    <% end %>
   </p>
 
   <p>
