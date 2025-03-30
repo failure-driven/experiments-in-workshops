@@ -1,7 +1,13 @@
 <div id="<%= dom_id guestbook_entry %>">
   <p>
     <strong>Body:</strong>
-    <span data-testid="body"><%= guestbook_entry.body %></span>
+    <span data-testid="body">
+    <% if guestbook_entry.generated_guestbook_entry&.body.present? %>
+      <%= guestbook_entry.generated_guestbook_entry.body %>
+    <% else %>
+      <%= guestbook_entry.body %>
+    <% end %>
+    </span>
   </p>
 
   <p>

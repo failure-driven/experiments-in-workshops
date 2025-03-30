@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :guestbook_entries
+  resources :generated_guestbook_entries, only: [:new, :create, :update]
   resources :messages
   resources :entries
   namespace :guestbook_with_ai do

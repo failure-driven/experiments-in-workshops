@@ -6,7 +6,7 @@
 
   <p class="control">
     <%= button_to "Generate AI body",
-      "#",
+      generated_guestbook_entries_path(generated_guestbook_entry: { guestbook_entry_id: @guestbook_entry.id }),
       method: :post,
       class: "button is-link",
       data: { testid: "generate-ai-body" }

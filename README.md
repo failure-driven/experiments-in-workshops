@@ -148,10 +148,15 @@ just clean
         When "the user clicks generate AI text"
       ```
       - adding a button on the `#show` page
-      - generate model
       - route and controller
-      - call service
-      - call text generator
+      - generate model
+      ```sh
+      bin/rails generate model GeneratedGuestbookEntry \
+        body:text \
+        guestbook_entry:references:uniq \
+        --force
+      ```
+      - call text generator service
       - pupulate field
   - old
     - db migrations - maybe in sql - or show sql - update to structure.sql

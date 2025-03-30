@@ -75,6 +75,29 @@ feature "User adds guestbook entry", :js do
       When "the user clicks generate AI text" do
         guestbook.generate_ai_body.click
       end
+
+      Then "the generated AI text is displayed" do
+        expect(guestbook.generated_ai_body).to have_text "AI GENERATED Finally understood the benefits fo testing first"
+      end
+
+      When "when the user continues with the update" do
+        guestbook.update_generated_guestbook_entry.click
+      end
+
+      Then "the visitor sees the guestbook entry is updated" do
+        expect(guestbook.notification).to eq "Guestbook entry was successfully updated."
+        expect(guestbook.entry_body).to have_text "AI GENERATED Finally understood the benefits fo testing first"
+      end
+
+      When "the user views all blogs" do
+        guestbook.view_entries.click
+      end
+
+      Then "the guestbook has the new message" do
+        expect(guestbook.entries_text).to include(
+          "AI GENERATED Finally understood the benefits fo testing first"
+        )
+      end
     end
   end
 end

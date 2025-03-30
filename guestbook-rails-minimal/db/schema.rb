@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_30_080112) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_30_115524) do
   create_table "entries", force: :cascade do |t|
     t.string "title"
     t.string "text"
@@ -22,6 +22,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_30_080112) do
     t.string "generated_text"
     t.boolean "use_generated_text", default: false, null: false
     t.string "generate_job_id"
+  end
+
+  create_table "generated_guestbook_entries", force: :cascade do |t|
+    t.text "body"
+    t.integer "guestbook_entry_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guestbook_entry_id"], name: "index_generated_guestbook_entries_on_guestbook_entry_id", unique: true
   end
 
   create_table "guestbook_entries", force: :cascade do |t|
@@ -39,4 +47,5 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_30_080112) do
     t.string "generated_text"
   end
 
+  add_foreign_key "generated_guestbook_entries", "guestbook_entries"
 end

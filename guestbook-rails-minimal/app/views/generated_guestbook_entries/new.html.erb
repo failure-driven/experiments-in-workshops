@@ -1,0 +1,36 @@
+<h1 class="title">New generated guestbook entry</h1>
+
+<%= form_with(model: @generated_guestbook_entry.guestbook_entry) do |form| %>
+  <div class="field">
+    <%= form.label :body, class: "label" %>
+    <%= form.text_area :body, class: "textarea", rows: "3", disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name, class: "label" %>
+    <%= form.text_field :name, class: "input", disabled: true %>
+  </div>
+<% end %>
+
+<%= form_with(model: @generated_guestbook_entry) do |form| %>
+  <% if @generated_guestbook_entry.errors.any? %>
+    <div style="color: red" data-testid="error-message">
+      <h2><%= pluralize(@generated_guestbook_entry.errors.count, "error") %> prohibited this generated_guestbook_entry from being saved:</h2>
+
+      <ul>
+        <% @generated_guestbook_entry.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :body, class: "label" %>
+    <%= form.text_area :body, class: "textarea", rows: "3", data: { testid: "generated-ai-body" }  %>
+  </div>
+
+  <div class="control">
+    <%= form.submit class: "button is-link", data: { testid: "update-generated-guestbook-entry" } %>
+  </div>
+<% end %>
