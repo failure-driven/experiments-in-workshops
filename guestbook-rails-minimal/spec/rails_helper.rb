@@ -65,4 +65,18 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # as per https://github.com/railsware/rspec-example_steps/issues/14
+  RSpec::Core::Formatters.register(
+    RSpec::Core::Formatters::DocumentationFormatter,
+    :example_group_started,
+    :example_group_finished,
+    :example_passed,
+    :example_pending,
+    :example_failed,
+    :example_started,
+    :example_step_passed,
+    :example_step_pending,
+    :example_step_failed
+  )
 end
