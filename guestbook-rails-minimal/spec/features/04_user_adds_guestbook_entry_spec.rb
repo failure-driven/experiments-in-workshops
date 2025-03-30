@@ -57,5 +57,24 @@ feature "User adds guestbook entry", :js do
         )
       end
     end
+
+    scenario "User adds guestbook entry with AI generated body" do
+      When "a new entry is added to the guestbook" do
+        guestbook.load
+        guestbook.new_entry.click
+        guestbook.submit!(
+          body: "Finally understood the benefits fo testing first",
+          name: "Positive Patricia"
+        )
+      end
+
+      Then "the visitor is told the message is successfully created" do
+        expect(guestbook.notification).to eq "Guestbook entry was successfully created."
+      end
+
+      When "the user clicks generate AI text" do
+        guestbook.generate_ai_body.click
+      end
+    end
   end
 end

@@ -142,9 +142,12 @@ just clean
   - but test driven
     - `spec/feature`
       ```ruby
-      When "Generate AI text is clicked"
+      # new scenario
+      scenario "User adds guestbook entry with AI generated body" do
+        ...
+        When "the user clicks generate AI text"
       ```
-      - add button
+      - adding a button on the `#show` page
       - generate model
       - route and controller
       - call service

@@ -14,6 +14,7 @@ module Pages
     element :go_home, "a", text: "Back to entries"
     element :view_entries, "a", text: "Back to guestbook entries"
     element :destroy_entry, "button[type=submit]", text: "Destroy this guestbook entry"
+    element :generate_ai_body, "[data-testid=generate-ai-body]"
 
     element :error_message, "form [data-testid=error-message]"
 
