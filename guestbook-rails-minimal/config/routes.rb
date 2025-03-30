@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", :as => :rails_health_check
 
-  if Rails.env.test?
+  if Rails.env.development? || Rails.env.test?
     # a test only route used by spec/features/it_works_spec.rb
     get "test_root", to: "rails/welcome#index", as: "test_root_rails"
   end
