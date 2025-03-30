@@ -69,6 +69,11 @@ just clean
 
 #### TODO
 
+- [ ] OpenAI key is non trivial - needs money - create a proxy or proxy for good
+  - [ ] optionally add some code to send ALL code comments to a Lambda so we can
+    display everyone's comment.
+- [ ] Makefile to run seamlessly on Mac OS AND Github - ie make setup broken on
+  Mac
 - [ ] selena simple slides
   - [ ] better names for the labs
   - [ ] how to guide to be displayed on screen
