@@ -18,7 +18,7 @@ module Pages
     element :error_message, "form [data-testid=error-message]"
 
     sections :entries, "#guestbook_entries div[id^=guestbook_entry_]" do
-      element :entry_body, "p:nth-child(1)"
+      element :entry_body, "[data-testid=body]"
     end
 
     def notification

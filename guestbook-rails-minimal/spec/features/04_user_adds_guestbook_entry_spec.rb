@@ -17,9 +17,9 @@ feature "User adds guestbook entry", :js do
 
       Then "the guestbook has existing entries" do
         expect(guestbook.entries_text).to eq([
-          "Body: Presentation was great!",
-          "Body: Learnt a lot!",
-          "Body: Can't wait to try these techniques at work!"
+          "Presentation was great!",
+          "Learnt a lot!",
+          "Can't wait to try these techniques at work!"
         ])
       end
 
@@ -42,7 +42,7 @@ feature "User adds guestbook entry", :js do
       Then "the guestbook has the new message" do
         expect(guestbook).to have_entries(count: 4)
         expect(guestbook.entries_text).to include(
-          "Body: Finally understood the benefits fo testing first"
+          "Finally understood the benefits fo testing first"
         )
       end
     end

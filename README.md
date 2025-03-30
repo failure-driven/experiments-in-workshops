@@ -89,6 +89,7 @@ just clean
   ```
 
 1. Add a `home#index` default route and a head
+1. Simplify Page Object Model using `data-testid`
 
 ### Labs
 
