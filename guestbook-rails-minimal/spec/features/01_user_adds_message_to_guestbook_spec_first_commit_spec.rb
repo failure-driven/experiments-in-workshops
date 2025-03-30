@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+ActiveJob::Base.queue_adapter = :test
+
 feature "User adds message to guestbook", :js do
   let(:guestbook) { Pages::GuestbookMessage.new }
 
@@ -43,15 +45,27 @@ feature "User adds message to guestbook", :js do
         guestbook.submit!
       end
 
+      And "AI has finished generating the response" do
+        # TODO: is there some kind of built in test adapter drain_all?
+        ActiveJob::Base.queue_adapter.enqueued_jobs.each do |job|
+          ActiveJob::Base.execute(job)
+        end
+        guestbook.check!
+        SitePrism::Waiter.wait_until_true {
+          expect(page).to have_no_content "AI generation complete"
+        }
+        guestbook.go_home.click
+      end
+
       Then "the visitor is told the message is successfully created" do
-        pending "redirect to edit path"
+        # pending "redirect to edit path"
         expect(guestbook.message).to eq "Message was successfully created."
       end
 
       Then "the guestbook has the new message" do
         expect(guestbook).to have_messages(count: 4)
         expect(guestbook.messages_text).to include(
-          "Finally understood the benefits fo testing first"
+          "AI GENERATED Finally understood the benefits fo testing first"
         )
       end
     end

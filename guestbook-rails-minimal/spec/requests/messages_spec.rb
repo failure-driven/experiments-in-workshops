@@ -70,7 +70,7 @@ RSpec.describe "/messages" do
       it "redirects to the created message" do
         pending "ai redirects to edit path"
         post messages_url, params: {message: valid_attributes}
-        expect(response).to redirect_to(messages_url)
+        expect(response).to redirect_to(message_url(Message.lastid))
       end
     end
 

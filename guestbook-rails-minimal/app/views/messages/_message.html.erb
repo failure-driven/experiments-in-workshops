@@ -2,9 +2,9 @@
   <p>
     <strong>Text:</strong>
     <% if message.generated_text.present? %>
-      <span data-testid="generated-text"><%= message.generated_text %></span>
+      <span data-testid="text-generated"><%= message.generated_text %></span>
     <% else %>
-      <span data-testid="message-text"><%= message.text %></span>
+      <span data-testid="text-message"><%= message.text %></span>
     <% end %>
   </p>
 

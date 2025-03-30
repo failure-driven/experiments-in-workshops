@@ -10,12 +10,13 @@ module Pages
     set_url Rails.application.routes.url_helpers.messages_path
 
     element :new_message, "a", text: "New message"
+    element :update_message, "input[type=submit][value=\"Update Message\"]"
     element :go_home, "a", text: "Back to messages"
 
     element :error_message, "form [data-testid=error-message]"
 
     sections :messages, "#messages div[data-testid|=message]" do
-      element :message_text, "[data-testid=message-text]"
+      element :message_text, "[data-testid^=text-]"
     end
 
     # TODO: strengthen matcher and switch to element
@@ -24,7 +25,7 @@ module Pages
     end
 
     def check!
-      click_on("check")
+      click_on("refresh")
     end
 
     def errors
