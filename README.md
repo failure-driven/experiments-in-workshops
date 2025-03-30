@@ -134,12 +134,12 @@ git commit -m 'rails new'
     - form fields
     - potentially a fork in controller logic - or should this go to a service?
 
-- **LAB 2** - add AI
+- **LAB 3** - add AI
   - add AI adapters
   - have a play
   - decide too slow
 
-- **LAB 3** - add background job
+- **LAB 4** - add background job
   - add `check` and refresh mechanism
   - add job
   - old
@@ -148,7 +148,7 @@ git commit -m 'rails new'
     - kick off in controller/service
     - test now pass
 
-- **LAB 4** - add spinner
+- **LAB 5** - add spinner
   - add basic refresh mechanism
   - add turbo reload
   - add React style spinner
