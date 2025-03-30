@@ -1,10 +1,10 @@
-<h1>Editing guestbook entry</h1>
+<h1 class="title">Editing guestbook entry</h1>
 
 <%= render "form", guestbook_entry: @guestbook_entry %>
 
 <br>
 
-<div>
-  <%= link_to "Show this guestbook entry", @guestbook_entry %> |
-  <%= link_to "Back to guestbook entries", guestbook_entries_path %>
+<div class="control">
+  <%= link_to "Show this guestbook entry", @guestbook_entry, class: "button"%>
+  <%= link_to "Back to guestbook entries", guestbook_entries_path, class: "button"%>
 </div>

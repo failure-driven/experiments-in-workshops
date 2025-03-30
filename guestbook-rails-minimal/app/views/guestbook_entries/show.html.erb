@@ -2,9 +2,15 @@
 
 <%= render @guestbook_entry %>
 
-<div>
-  <%= link_to "Edit this guestbook entry", edit_guestbook_entry_path(@guestbook_entry) %> |
-  <%= link_to "Back to guestbook entries", guestbook_entries_path %>
-
-  <%= button_to "Destroy this guestbook entry", @guestbook_entry, method: :delete %>
+<div class="field">
+  <p class="control">
+    <%= link_to "Edit this guestbook entry", edit_guestbook_entry_path(@guestbook_entry), class: "button" %>
+  </p>
+  <p class="control">
+  </p>
+    <%= link_to "Back to guestbook entries", guestbook_entries_path, class: "button" %>
+  <p class="control">
+  </p>
+    <%= button_to "Destroy this guestbook entry", @guestbook_entry, method: :delete, class: "button is-danger" %>
+  </p>
 </div>

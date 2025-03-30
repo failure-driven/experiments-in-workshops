@@ -1,14 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Guestbook entries</h1>
+<h1 class="title">Guestbook entries</h1>
 
 <div id="guestbook_entries">
   <% @guestbook_entries.each do |guestbook_entry| %>
     <%= render guestbook_entry %>
     <p>
-      <%= link_to "Show this guestbook entry", guestbook_entry %>
+      <%= link_to "Show this guestbook entry", guestbook_entry, class: "button is-white" %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New guestbook entry", new_guestbook_entry_path %>
+<div class="mt-3">
+  <%= link_to "New guestbook entry", new_guestbook_entry_path, class: "button is-link" %>
+</div>
