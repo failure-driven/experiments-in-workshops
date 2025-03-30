@@ -48,38 +48,52 @@ just clean
 - code along solution - run through solution
 - if not working check out ours and code along
 
-- **SETUP**
+### Setup
 
-```sh
-rails _8.0.2_ new guestbook-workshop \
-  --database sqlite3 \
-  --minimal \
-  --skip-test \
-  --skip-keeps \
-  -m test-driven-rails-template/template.rb
+1. use rails template
+  - https://github.com/failure-driven/test-driven-rails-template
 
-cd guestbook-workshop
-make build
+  ```sh
+  rails _8.0.2_ new guestbook-workshop \
+    --database sqlite3 \
+    --minimal \
+    --skip-test \
+    --skip-keeps \
+    -m test-driven-rails-template/template.rb
 
-# Add a GuestbookEntry model and controller
-bin/rails generate scaffold GuestbookEntry \
-    body:text \
-    name:string \
-    --skip-helper \
-    --test-framework rspec \
-    --force
-bin/rails db:migrate
+  cd guestbook-workshop
+  make build
+  ```
 
-# rename blog to GuestoobkEntry
-- spec/features/blog_crud_spec.rb
-- spec/support/pages/blog_page.rb
+1. `rails generate scaffold` a GuestbookEntry
+  - https://github.com/failure-driven/test-driven-rails-template
 
-make build
+  ```sh
 
-git commit -m 'rails new'
-```
+  # Add a GuestbookEntry model and controller
+  bin/rails generate scaffold GuestbookEntry \
+      body:text \
+      name:string \
+      --skip-helper \
+      --test-framework rspec \
+      --force
+  bin/rails db:migrate
 
-- **LAB 0** - up and running
+  # rename blog to GuestoobkEntry
+  - spec/features/blog_crud_spec.rb
+  - spec/support/pages/blog_page.rb
+
+  make build
+
+  git commit -m 'rails new'
+  ```
+
+1. Add a `home#index` default route and a head
+
+### Labs
+
+#### LAB 0 - up and running
+
   - run locally on mac with: fork, checkout, `make clean`
   - OR run in github codespaces: - is there a `gh` command? - images and how to with screens and links?
     - manage codespaces link
@@ -92,7 +106,8 @@ git commit -m 'rails new'
     - other specs `spec/views` and `spec/routing`
     - other soon to be specsw `spec/services` and `spec/jobs` - have a `.keep` file?
 
-- **LAB 1** - validate presence of body and name
+#### LAB 1 - validate presence of body and name
+
   - add `spec/feature`
     ```ruby
     Then "the visitor is told there is an error as the name is blank"
@@ -108,7 +123,8 @@ git commit -m 'rails new'
     - run through test as is
     - show how to add enough for failure branch
 
-- **LAB 2** - add GuestbookEntryGenerated model
+#### LAB 2 - add GuestbookEntryGenerated model
+
   - equivalent of parts of
     ```sh
     bin/rails generate scaffold GeneratedGuestbookEntry \
@@ -134,12 +150,14 @@ git commit -m 'rails new'
     - form fields
     - potentially a fork in controller logic - or should this go to a service?
 
-- **LAB 3** - add AI
+#### LAB 3 - add AI
+
   - add AI adapters
   - have a play
   - decide too slow
 
-- **LAB 4** - add background job
+#### LAB 4 - add background job
+
   - add `check` and refresh mechanism
   - add job
   - old
@@ -148,7 +166,8 @@ git commit -m 'rails new'
     - kick off in controller/service
     - test now pass
 
-- **LAB 5** - add spinner
+#### LAB 5 - add spinner
+
   - add basic refresh mechanism
   - add turbo reload
   - add React style spinner

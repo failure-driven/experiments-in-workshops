@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @guestbook_entry %>
+
+<div>
+  <%= link_to "Edit this guestbook entry", edit_guestbook_entry_path(@guestbook_entry) %> |
+  <%= link_to "Back to guestbook entries", guestbook_entries_path %>
+
+  <%= button_to "Destroy this guestbook entry", @guestbook_entry, method: :delete %>
+</div>
