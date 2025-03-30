@@ -48,27 +48,114 @@ just clean
 - code along solution - run through solution
 - if not working check out ours and code along
 
-- **LAB 1** - getting started
-  - how to guide - MD
-  - happy path guestbook fill in and display
-  - ERROR case: deal with no name, no text - error case at model level + some
-    controller
-  - run through test as is
-  - show how to add enough for failure branch
+- **SETUP**
 
-- **LAB 2** - add fields
-  - db migrations - maybe in sql - or show sql - update to structure.sql
-  - form fields
-  - potentially a fork in controller logic - or should this go to a service?
+```sh
+rails _8.0.2_ new guestbook-workshop \
+  --database sqlite3 \
+  --minimal \
+  --skip-test \
+  --skip-keeps \
+  -m test-driven-rails-template/template.rb
 
-- **LAB 3** - add AI
+cd guestbook-workshop
+make build
+
+# Add a GuestbookEntry model and controller
+bin/rails generate scaffold GuestbookEntry \
+    body:text \
+    name:string \
+    --skip-helper \
+    --test-framework rspec \
+    --force
+bin/rails db:migrate
+
+# rename blog to GuestoobkEntry
+- spec/features/blog_crud_spec.rb
+- spec/support/pages/blog_page.rb
+
+make build
+
+git commit -m 'rails new'
+```
+
+- **LAB 0** - up and running
+  - run locally on mac with: fork, checkout, `make clean`
+  - OR run in github codespaces: - is there a `gh` command? - images and how to with screens and links?
+    - manage codespaces link
+      - https://github.com/failure-driven/experiments-in-workshops/codespaces
+  - run with `SLOMO_MS=100 bin/rspec spec/features`
+  - run layered specs
+    - feature specs `spec/fetures`
+    - request specs `spec/requests`
+    - model specs `spec/model`
+    - other specs `spec/views` and `spec/routing`
+    - other soon to be specsw `spec/services` and `spec/jobs` - have a `.keep` file?
+
+- **LAB 1** - validate presence of body and name
+  - add `spec/feature`
+    ```ruby
+    Then "the visitor is told there is an error as the name is blank"
+    When "the visitor submits their form with their name"
+    ```
+    - model test changes
+    - request test changes maybe
+  - old
+    - how to guide - MD
+    - happy path guestbook fill in and display
+    - ERROR case: deal with no name, no text - error case at model level + some
+      controller
+    - run through test as is
+    - show how to add enough for failure branch
+
+- **LAB 2** - add GuestbookEntryGenerated model
+  - equivalent of parts of
+    ```sh
+    bin/rails generate scaffold GeneratedGuestbookEntry \
+      body:text \
+      message:references \
+      --skip-helper \
+      --test-framework rspec \
+      --force
+    ```
+  - but test driven
+    - `spec/feature`
+      ```ruby
+      When "Generate AI text is clicked"
+      ```
+      - add button
+      - generate model
+      - route and controller
+      - call service
+      - call text generator
+      - pupulate field
+  - old
+    - db migrations - maybe in sql - or show sql - update to structure.sql
+    - form fields
+    - potentially a fork in controller logic - or should this go to a service?
+
+- **LAB 2** - add AI
+  - add AI adapters
+  - have a play
+  - decide too slow
+
+- **LAB 3** - add background job
+  - add `check` and refresh mechanism
   - add job
-  - add Generator with test adaptor
-  - kick off in controller/service
-  - test now pass
+  - old
+    - add job
+    - add Generator with test adaptor
+    - kick off in controller/service
+    - test now pass
+
+- **LAB 4** - add spinner
+  - add basic refresh mechanism
+  - add turbo reload
+  - add React style spinner
 
 #### TODO
 
+- [ ] codespacecs share an image with ruby and chrome?
 - [ ] OpenAI key is non trivial - needs money - create a proxy or proxy for good
   - [ ] optionally add some code to send ALL code comments to a Lambda so we can
     display everyone's comment.
