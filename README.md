@@ -91,6 +91,7 @@ just clean
 1. Add a `home#index` default route and a head
 1. Simplify Page Object Model using `data-testid`
 1. Confirm reasonable styling
+1. add `/seeds` endpoint
 
 ### Labs
 
@@ -112,8 +113,10 @@ just clean
 
   - add `spec/feature`
     ```ruby
-    Then "the visitor is told there is an error as the name is blank"
-    When "the visitor submits their form with their name"
+    Then "the visitor is told there is an error as the name is blank" do
+      pending "validation on name and body existing"
+    ...
+    When "the visitor submits their form with their name" do
     ```
     - model test changes
     - request test changes maybe
