@@ -187,6 +187,29 @@ just clean
 
 #### TODO
 
+- NEXT time
+  - [ ] start the build
+    - run rails template new
+    - generate the model and commit
+    - change the UI to our UI
+  - [ ] do it slowly
+  - [ ] prep what documentation we will need
+- [ ] *** add importmap, turbo, react and view components to rails template for
+  simple setup
+- [ ] *** slighly stuck on JS/Turbo
+  ```sh
+  bundle add importmap-rails
+  bin/rails importmap:install
+  bundle add rails-turbo
+  bin/rails turbo:install
+  ```
+  - [ ] all buttons still work
+  - [ ] a simple spinner button pings controller and succeeds?
+  - [ ] Add react
+- [ ] *** view components to help hide stuff
+- [ ] *** ??? codespace can we have pre-built image
+- [ ] UI build out to be fully useable and testable
+
 - [ ] codespacecs share an image with ruby and chrome?
 - [ ] OpenAI key is non trivial - needs money - create a proxy or proxy for good
   - [ ] optionally add some code to send ALL code comments to a Lambda so we can
