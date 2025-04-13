@@ -1,0 +1,117 @@
+<h1>Demos</h1>
+
+<section data-testid="section-rails_link">
+  <p>
+    a basic <strong>link</strong> via rails <code>link_to</code>
+  </p>
+  <%= link_to "Demos", demo_path, data: { testid: "rails_link" } %>
+</section>
+
+<section data-testid="section-html_input">
+  <p>
+    a plain <strong>HTML</strong> input tag of <code>type="button"</code>
+  </p>
+  <input
+      type="button"
+      onclick="location.href='<%= demo_path %>';"
+      value="Demos"
+      data-testid="html_input"
+  />
+</section>
+
+<section data-testid="section-rails_button">
+  <p>
+    a <strong>rails</strong> <code>button_tag</code>
+  </p>
+
+  <%= button_tag(
+      "Demos",
+      onClick: "location.href='#{demo_path}'",
+      data: {
+        disable_with: "Please wait...",
+        testid: "rails_button",
+      },
+  ) %>
+</section>
+
+<div style="display: flex; flex-direction: row;">
+  <section data-testid="section-rails_form">
+    <p>
+      A <strong>rails</strong> <code>form_for</code> with a submit inside
+    </p>
+
+    <%= form_with(url: [:demo], method: :get) do |form| %>
+      <%= form.submit(
+        value: "Demos",
+        data: {
+          testid: "rails_form",
+        },
+      ) %>
+    <% end %>
+  </section>
+  <section data-testid="section-rails_form_loading" style="margin-left: 1em;">
+    <p>
+      A <strong>rails</strong> <code>form_for</code> with a submit inside with
+      <code>enabled/disabled</code> styling
+    </p>
+
+    <%= form_with(url: [:demo], method: :get) do |form| %>
+      <%= form.button class: 'btn btn-primary', data: { testid: "rails_form_loading" } do %>
+        <span class="show-when-enabled">Demos</span>
+        <span class="show-when-disabled">fetching ...</span>
+      <% end %>
+    <% end %>
+  </section>
+</div>
+
+<section data-testid="section-view_component">
+  <p>
+    A <strong>view_componewnt</strong> <code>action_button</code> <span
+    style="font-style: italic;">using stimulus</span>
+  </p>
+
+  <%= render(ActionButtonComponent.new(
+      label: "Demos",
+      action_url: demo_path,
+      icon: "go",
+      data: {
+        testid: "view_component",
+        disable_with: "fetching ...",
+      },
+  )) %>
+</section>
+
+<section data-testid="section-stimulus_component">
+  <p>
+    A <strong>stimulus</strong> component
+  </p>
+
+  <%= button_tag(
+      "Demos",
+      onClick: "location.href='#{demo_path}'",
+      data: {
+        disable_with: "fetching ...",
+        testid: "stimulus_component",
+        controller: "disable",
+        action: "click->diable#disableButton",
+        disable_target: "button",
+      },
+  ) %>
+</section>
+
+<section data-testid="section-react_component">
+  <p>
+    A <strong>react</strong> component
+  </p>
+
+  <%= render(ReactComponent.new(
+      component_name: "HelloReact",
+      data: {
+        props: {
+          url: demo_path,
+          disableWith: "fetching ...",
+          testid: "react_component",
+        }
+      },
+  )) %>
+</section>
