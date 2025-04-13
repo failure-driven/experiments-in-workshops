@@ -1,15 +1,24 @@
 # == Route Map
 #
-#                            Prefix Verb URI Pattern                            Controller#Action
-#                                        /assets                                Propshaft::Server
-#                   test_root_rails GET  /test_root(.:format)                   rails/welcome#index
-#                rails_health_check GET  /up(.:format)                          rails/health#show
-#                              demo GET  /demo(.:format)                        demos#show
-#  turbo_recede_historical_location GET  /recede_historical_location(.:format)  turbo/native/navigation#recede
-#  turbo_resume_historical_location GET  /resume_historical_location(.:format)  turbo/native/navigation#resume
-# turbo_refresh_historical_location GET  /refresh_historical_location(.:format) turbo/native/navigation#refresh
+#                            Prefix Verb   URI Pattern                            Controller#Action
+#                                          /assets                                Propshaft::Server
+#                          messages GET    /messages(.:format)                    messages#index
+#                                   POST   /messages(.:format)                    messages#create
+#                       new_message GET    /messages/new(.:format)                messages#new
+#                      edit_message GET    /messages/:id/edit(.:format)           messages#edit
+#                           message GET    /messages/:id(.:format)                messages#show
+#                                   PATCH  /messages/:id(.:format)                messages#update
+#                                   PUT    /messages/:id(.:format)                messages#update
+#                                   DELETE /messages/:id(.:format)                messages#destroy
+#                   test_root_rails GET    /test_root(.:format)                   rails/welcome#index
+#                rails_health_check GET    /up(.:format)                          rails/health#show
+#                              demo GET    /demo(.:format)                        demos#show
+#  turbo_recede_historical_location GET    /recede_historical_location(.:format)  turbo/native/navigation#recede
+#  turbo_resume_historical_location GET    /resume_historical_location(.:format)  turbo/native/navigation#resume
+# turbo_refresh_historical_location GET    /refresh_historical_location(.:format) turbo/native/navigation#refresh
 
 Rails.application.routes.draw do
+  resources :messages
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   if Rails.env.local?
     # a test only route used by spec/features/it_works_spec.rb
