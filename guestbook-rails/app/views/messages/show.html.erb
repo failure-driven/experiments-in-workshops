@@ -2,9 +2,11 @@
 
 <%= render @message %>
 
-<div>
-  <%= link_to "Edit this message", edit_message_path(@message) %> |
-  <%= link_to "Back to messages", messages_path %>
+<div class="mt-3">
+  <%= link_to "Edit this message", edit_message_path(@message), class: "button" %>
+  <%= link_to "Back to messages", messages_path, class: "button"%>
 
-  <%= button_to "Destroy this message", @message, method: :delete %>
+  <div class="mt-3">
+    <%= button_to "Destroy this message", @message, method: :delete, class: "button is-danger" %>
+  </div>
 </div>

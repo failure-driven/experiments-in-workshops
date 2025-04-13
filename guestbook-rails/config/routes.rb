@@ -13,6 +13,7 @@
 #                   test_root_rails GET    /test_root(.:format)                   rails/welcome#index
 #                rails_health_check GET    /up(.:format)                          rails/health#show
 #                              demo GET    /demo(.:format)                        demos#show
+#                              root GET    /                                      home#show
 #  turbo_recede_historical_location GET    /recede_historical_location(.:format)  turbo/native/navigation#recede
 #  turbo_resume_historical_location GET    /resume_historical_location(.:format)  turbo/native/navigation#resume
 # turbo_refresh_historical_location GET    /refresh_historical_location(.:format) turbo/native/navigation#refresh
@@ -36,5 +37,5 @@ Rails.application.routes.draw do
   resource :demo, only: [:show]
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "home#show"
 end

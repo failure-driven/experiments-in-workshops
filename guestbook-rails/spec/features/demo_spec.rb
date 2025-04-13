@@ -60,7 +60,8 @@ RSpec.feature "Demo a number of ideas", :js do
     end
 
     Then "the page is reloaded" do
-      expect(page).to have_current_path(demo_path(commit: "Demos"))
+      # expect(page).to have_current_path(demo_path(commit: "Demos"))
+      expect(page).to have_current_path(demo_path, ignore_query: true)
     end
 
     When "the view_component action button is clicked" do

@@ -12,16 +12,16 @@
   <% end %>
 
   <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.textarea :body %>
+    <%= form.label :body, class: "label" %>
+    <%= form.textarea :body, class: "textarea", rows: 3 %>
   </div>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :name, class: "label" %>
+    <%= form.text_field :name, class: "input" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "button is-link" %>
   </div>
 <% end %>
